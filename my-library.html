@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library - Metahub Voice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .user-info-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-email {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .logout-btn-header {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .logout-btn-header:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .main-content {
+            padding: 60px 20px;
+            min-height: calc(100vh - 85px);
+            position: relative;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .page-title {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6, #06b6d4, #6366f1);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            text-align: center;
+            transform-style: preserve-3d;
+            animation: gradientShift 8s ease infinite, float3dTitle 4s ease-in-out infinite;
+            text-shadow: 
+                0 10px 30px rgba(99, 102, 241, 0.4),
+                0 20px 60px rgba(6, 182, 212, 0.3);
+            filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5));
+            line-height: 1.1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        @keyframes float3dTitle {
+            0%, 100% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+            25% {
+                transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(8px);
+            }
+            50% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+            75% {
+                transform: perspective(1000px) rotateX(-2deg) rotateY(2deg) translateZ(8px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotateX(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotateX(2deg);
+            }
+        }
+
+        .course-card:nth-child(1) { animation-delay: 0s; }
+        .course-card:nth-child(2) { animation-delay: 0.5s; }
+        .course-card:nth-child(3) { animation-delay: 1s; }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .course-card:hover {
+            transform: translateY(-15px) rotateX(5deg) scale(1.02);
+            box-shadow: 
+                0 25px 60px rgba(99, 102, 241, 0.4),
+                0 0 80px rgba(6, 182, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+            animation-play-state: paused;
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
+        }
+
+        .course-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .course-card:hover::after {
+            opacity: 1;
+        }
+
+        .course-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .course-description {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .purchase-date {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        .access-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            background-size: 200% 100%;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .access-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .access-btn:hover::before {
+            left: 100%;
+        }
+
+        .access-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.6);
+            background-position: 100% 0;
+        }
+
+        .access-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .empty-library {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .empty-library h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .empty-library p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .auth-required {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .auth-required h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #06b6d4;
+        }
+
+        .auth-btn {
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            background-size: 200% 100%;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            margin: 0 10px;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .auth-btn:hover::before {
+            left: 100%;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6);
+            background-position: 100% 0;
+        }
+
+        .auth-btn:active {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/Yg29nKaXyGhLNJy1/metahub-academy-logo-design-AVL7EDKb09IvqJG4.png" alt="Metahub Voice Logo" class="logo-image">
+                    <span class="logo-text">METAHUB VOICE</span>
+                </a>
+                <div class="user-info-header" id="headerUserInfo" style="display: none;">
+                    <span class="user-email" id="headerUserEmail"></span>
+                    <button onclick="handleLogout()" class="logout-btn-header">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">My Library</h1>
+            <p class="page-subtitle">Access your purchased courses and materials</p>
+
+            <!-- Auth Required -->
+            <div class="auth-required" id="authRequired" style="display: none;">
+                <h2>🔒 Login Required</h2>
+                <p style="color: #94a3b8; margin-bottom: 30px;">Please sign in to access your library</p>
+                <a href="index.html" class="auth-btn">Go to Home</a>
+            </div>
+
+            <!-- Library Content -->
+            <div id="libraryContent">
+                <div class="courses-grid" id="coursesGrid"></div>
+                <div class="empty-library" id="emptyLibrary" style="display: none;">
+                    <h3>📚 Your library is empty</h3>
+                    <p>You haven't purchased any courses yet</p>
+                    <a href="index.html" class="auth-btn">Browse Courses</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const availableCourses = {
+            'crypto-trading': {
+                id: 'crypto-trading',
+                title: 'Crypto Trading Video Course',
+                description: 'Master cryptocurrency trading with our comprehensive video course',
+                image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400',
+                price: 500,
+                accessUrl: 'crypto-trading-course.html'
+            },
+            'crypto-spreadsheet': {
+                id: 'crypto-spreadsheet',
+                title: 'Crypto Pull Profit Spreadsheet',
+                description: 'Advanced spreadsheet for tracking crypto profits and portfolio management',
+                image: 'https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=scale-down,q=100/cdn-ecommerce/store_01J7DYMSS0NGYTG74SF3YB3TAP/assets/1b9bdcc5-fdd3-4a35-bb16-ada0b23b5843.png',
+                price: 500,
+                accessUrl: '#'
+            },
+            'affiliate-marketing': {
+                id: 'affiliate-marketing',
+                title: 'Proven Steps to 6-Figure Affiliate Marketing',
+                description: 'Complete guide to building a successful affiliate marketing business',
+                image: 'https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=scale-down,q=100/cdn-ecommerce/store_01J7DYMSS0NGYTG74SF3YB3TAP%2Fassets%2F1726139982511-Screenshot%202024-02-20%20at%2009-43-46%20Crypto-%20Truth%20and-2%20comma%20clubAffiliate-Marketing-%20new%20(2).pdf.png',
+                price: 20,
+                accessUrl: '#'
+            }
+        };
+
+        // Add sample purchases for demo (remove this in production)
+        function addSamplePurchases() {
+            const sampleEmail = 'demo@metahubvoice.com';
+            const samplePurchases = [
+                {
+                    courseId: 'crypto-trading',
+                    purchaseDate: new Date().toISOString(),
+                    orderId: 'DEMO-001',
+                    amount: 500,
+                    paymentMethod: 'demo',
+                    status: 'active'
+                },
+                {
+                    courseId: 'crypto-spreadsheet',
+                    purchaseDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+                    orderId: 'DEMO-002',
+                    amount: 500,
+                    paymentMethod: 'demo',
+                    status: 'active'
+                },
+                {
+                    courseId: 'affiliate-marketing',
+                    purchaseDate: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
+                    orderId: 'DEMO-003',
+                    amount: 20,
+                    paymentMethod: 'demo',
+                    status: 'pending'
+                }
+            ];
+            
+            // Only add if no purchases exist
+            if (!localStorage.getItem('metahubPurchases_' + sampleEmail)) {
+                localStorage.setItem('metahubPurchases_' + sampleEmail, JSON.stringify(samplePurchases));
+                localStorage.setItem('metahubCurrentUser', JSON.stringify({ email: sampleEmail }));
+            }
+        }
+
+        // Call this to show demo data
+        addSamplePurchases();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const currentUser = localStorage.getItem('metahubCurrentUser');
+            
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                showLibrary(user);
+            } else {
+                // Try to get email from pending payment
+                const pendingEmail = localStorage.getItem('pendingPayPalEmail');
+                if (pendingEmail) {
+                    showLibrary({ email: pendingEmail });
+                } else {
+                    showAuthRequired();
+                }
+            }
+        }
+
+        function showAuthRequired() {
+            document.getElementById('authRequired').style.display = 'block';
+            document.getElementById('libraryContent').style.display = 'none';
+        }
+
+        function showLibrary(user) {
+            document.getElementById('authRequired').style.display = 'none';
+            document.getElementById('libraryContent').style.display = 'block';
+            
+            // Update header
+            document.getElementById('headerUserInfo').style.display = 'flex';
+            document.getElementById('headerUserEmail').textContent = user.email;
+            
+            // Load user's courses
+            loadUserCourses(user);
+        }
+
+        function loadUserCourses(user) {
+            const coursesGrid = document.getElementById('coursesGrid');
+            const emptyLibrary = document.getElementById('emptyLibrary');
+            
+            console.log('Loading courses for:', user.email);
+            const storageKey = 'metahubPurchases_' + user.email;
+            console.log('Storage key:', storageKey);
+            
+            const userPurchases = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            console.log('Purchases found:', userPurchases.length, userPurchases);
+            
+            if (userPurchases.length === 0) {
+                coursesGrid.innerHTML = '';
+                emptyLibrary.style.display = 'block';
+                console.log('No purchases - showing empty state');
+                return;
+            }
+            
+            emptyLibrary.style.display = 'none';
+            coursesGrid.innerHTML = '';
+            
+            userPurchases.forEach(purchase => {
+                console.log('Processing purchase:', purchase);
+                const course = availableCourses[purchase.courseId];
+                if (course) {
+                    const courseCard = createCourseCard(course, purchase);
+                    coursesGrid.appendChild(courseCard);
+                    console.log('Added course card:', course.title);
+                } else {
+                    console.warn('Course not found:', purchase.courseId);
+                }
+            });
+        }
+
+        function createCourseCard(course, purchase) {
+            const card = document.createElement('div');
+            card.className = 'course-card';
+            
+            const date = new Date(purchase.purchaseDate);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+            
+            const statusBadge = purchase.status === 'pending' 
+                ? '<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">⏳ Pending Verification</span>'
+                : '';
+            
+            card.innerHTML = `
+                <img src="${course.image}" alt="${course.title}" class="course-image" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400'">
+                <div class="course-content">
+                    <h3 class="course-title">${course.title}</h3>
+                    <p class="course-description">${course.description}</p>
+                    ${statusBadge}
+                    <div class="course-meta">
+                        <span class="purchase-date">Purchased: ${formattedDate}</span>
+                        <a href="${course.accessUrl}" class="access-btn">Access Course</a>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('metahubCurrentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

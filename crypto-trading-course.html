@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Video Course - $500 | Metahub Voice</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateX(-3px);
+        }
+
+        .logo-image {
+            height: 45px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-image {
+            filter: brightness(1.1);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .logo-image {
+                height: 35px;
+            }
+        }
+
+        .course-hero {
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .course-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+        }
+
+        .course-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            background: linear-gradient(90deg, #6366f1, #06b6d4, #8b5cf6, #06b6d4, #6366f1);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            transform: perspective(1000px) rotateX(0deg);
+            animation: textReveal 2s ease-out forwards, gradientShift 8s ease infinite, float3d 4s ease-in-out infinite;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: perspective(1000px) rotateX(-90deg) translateY(-50px);
+                letter-spacing: 10px;
+            }
+
+            100% {
+                opacity: 1;
+                transform: perspective(1000px) rotateX(0deg) translateY(0);
+                letter-spacing: -0.5px;
+            }
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% center;
+            }
+
+            50% {
+                background-position: 100% center;
+            }
+        }
+
+        @keyframes float3d {
+
+            0%,
+            100% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            }
+
+            25% {
+                transform: perspective(1000px) rotateX(2deg) rotateY(-2deg);
+            }
+
+            50% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            }
+
+            75% {
+                transform: perspective(1000px) rotateX(-2deg) rotateY(2deg);
+            }
+        }
+
+        @keyframes textShimmer {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.2);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .course-hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #06b6d4;
+            margin: 20px 0;
+            letter-spacing: -0.5px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            display: inline-block;
+        }
+
+        .video-container {
+            max-width: 700px;
+            margin: 35px auto;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.1) 50%, rgba(139, 92, 246, 0.15) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(99, 102, 241, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.8s ease 0.6s both;
+            transform-style: preserve-3d;
+            position: relative;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.4;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .video-container:hover {
+            transform: translateY(-8px) rotateX(2deg) scale(1.01);
+            box-shadow:
+                0 30px 80px rgba(99, 102, 241, 0.5),
+                0 0 100px rgba(6, 182, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .video-container:hover::before {
+            opacity: 1;
+        }
+
+        .video-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .video-container:hover::after {
+            opacity: 1;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background:
+                linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.9) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(99,102,241,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #94a3b8;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover .video-placeholder {
+            color: #cbd5e1;
+        }
+
+        .video-placeholder::before {
+            content: '▶';
+            font-size: 3rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.9;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .video-container:hover .video-placeholder::before {
+            filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.8));
+            transform: scale(1.1);
+        }
+
+        .course-content {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            position: relative;
+        }
+
+        .section {
+            max-width: 950px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6, #06b6d4, #6366f1);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.8px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            text-transform: uppercase;
+            transform-style: preserve-3d;
+            animation: gradientShift 8s ease infinite, float3dSection 4s ease-in-out infinite;
+            text-shadow:
+                0 8px 25px rgba(99, 102, 241, 0.4),
+                0 15px 50px rgba(6, 182, 212, 0.3);
+            filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.5));
+        }
+
+        @keyframes float3dSection {
+
+            0%,
+            100% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+
+            25% {
+                transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(8px);
+            }
+
+            50% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+
+            75% {
+                transform: perspective(1000px) rotateX(-2deg) rotateY(2deg) translateZ(8px);
+            }
+        }
+
+        .section h2::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(15px);
+            opacity: 0.6;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotateX(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotateX(2deg);
+            }
+        }
+
+        .feature-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .feature-card:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        .feature-card:nth-child(5) {
+            animation-delay: 2s;
+        }
+
+        .feature-card:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) rotateX(5deg) scale(1.02);
+            box-shadow:
+                0 25px 60px rgba(99, 102, 241, 0.4),
+                0 0 80px rgba(6, 182, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+            animation-play-state: paused;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-card h3 {
+            color: #ffffff;
+            margin-bottom: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Cursor gradient effect */
+        .feature-card .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(99, 102, 241, 0.15),
+                    rgba(6, 182, 212, 0.1),
+                    transparent 40%);
+        }
+
+        .feature-card:hover .gradient-overlay {
+            opacity: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 70px 20px;
+            background:
+                linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.15) 50%, rgba(139, 92, 246, 0.15) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, #ffffff, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .purchase-title {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6, #06b6d4, #6366f1);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            transform-style: preserve-3d;
+            animation: gradientShift 8s ease infinite, float3dTitle 4s ease-in-out infinite;
+            text-shadow:
+                0 10px 30px rgba(99, 102, 241, 0.4),
+                0 20px 60px rgba(6, 182, 212, 0.3);
+            filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5));
+        }
+
+        .purchase-title::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(20px);
+            opacity: 0.6;
+        }
+
+        .purchase-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #06b6d4, #8b5cf6, transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.6;
+                transform: translateX(-50%) scaleX(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scaleX(1.1);
+            }
+        }
+
+        @keyframes float3dTitle {
+
+            0%,
+            100% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+
+            25% {
+                transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) translateZ(10px);
+            }
+
+            50% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+
+            75% {
+                transform: perspective(1000px) rotateX(-3deg) rotateY(3deg) translateZ(10px);
+            }
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        ul li {
+            padding: 12px 16px;
+            padding-left: 45px;
+            position: relative;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            animation: floatList 5s ease-in-out infinite;
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes floatList {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        ul li:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        ul li:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        ul li:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        ul li:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+
+        ul li:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+
+        ul li:nth-child(6) {
+            animation-delay: 1.5s;
+        }
+
+        ul li:nth-child(7) {
+            animation-delay: 1.8s;
+        }
+
+        ul li:nth-child(8) {
+            animation-delay: 2.1s;
+        }
+
+        ul li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        ul li:hover {
+            transform: translateX(10px) rotateY(2deg) scale(1.02);
+            box-shadow:
+                0 15px 40px rgba(99, 102, 241, 0.3),
+                0 0 60px rgba(6, 182, 212, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+            animation-play-state: paused;
+        }
+
+        ul li:hover::after {
+            opacity: 1;
+        }
+
+        ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #06b6d4;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        ul li:hover:before {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+        }
+
+        /* Scroll animations */
+        .section {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        /* Enhanced buttons */
+        .cta-button,
+        .complete-payment-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before,
+        .complete-payment-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before,
+        .complete-payment-btn:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .course-hero {
+                padding: 60px 20px 40px;
+            }
+
+            .course-hero h1 {
+                font-size: 2rem;
+                letter-spacing: -1px;
+            }
+
+            .price {
+                font-size: 2.2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+                letter-spacing: -0.5px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .video-container {
+                margin: 25px auto;
+                max-width: 100%;
+            }
+
+            .video-placeholder {
+                font-size: 0.9rem;
+            }
+
+            .video-placeholder::before {
+                font-size: 2rem;
+            }
+
+            .cta-section {
+                padding: 50px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .purchase-title {
+                font-size: 2rem;
+                letter-spacing: -1px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="logo">
+                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/Yg29nKaXyGhLNJy1/metahub-academy-logo-design-AVL7EDKb09IvqJG4.png"
+                    alt="Metahub Voice Logo" class="logo-image">
+                <span class="logo-text">METAHUB <span>VOICE</span></span>
+            </a>
+            <a href="my-library.html"
+                style="color: #ffffff; text-decoration: none; font-weight: 600; padding: 10px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.95rem;">
+                📚 My Library
+            </a>
+        </div>
+    </header>
+
+    <section class="course-hero">
+        <div class="container">
+            <h1>Crypto Trading Video Course</h1>
+            <p>Master cryptocurrency trading with our comprehensive video course</p>
+        </div>
+    </section>
+
+    <div class="video-container">
+        <div class="video-placeholder">
+            📹 Course Preview Video
+            <br>
+            <small style="font-size: 0.8rem;">(Add your video embed code here)</small>
+        </div>
+    </div>
+
+    <section class="course-content">
+        <div class="section">
+            <h2>What You'll Learn</h2>
+            <ul>
+                <li>Technical analysis fundamentals and advanced strategies</li>
+                <li>Chart patterns and trading indicators</li>
+                <li>Risk management and position sizing</li>
+                <li>Cryptocurrency market psychology</li>
+                <li>Trading strategies for bull and bear markets</li>
+                <li>Portfolio management and diversification</li>
+                <li>DeFi and yield farming opportunities</li>
+                <li>Tax implications and legal considerations</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Course Features</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="gradient-overlay"></div>
+                    <h3>📚 50+ Video Lessons</h3>
+                    <p>Comprehensive video tutorials covering all aspects of crypto trading</p>
+                </div>
+                <div class="feature-card">
+                    <div class="gradient-overlay"></div>
+                    <h3>⏰ Lifetime Access</h3>
+                    <p>Learn at your own pace with unlimited access to all course materials</p>
+                </div>
+                <div class="feature-card">
+                    <div class="gradient-overlay"></div>
+                    <h3>📊 Trading Tools</h3>
+                    <p>Exclusive access to trading spreadsheets and analysis tools</p>
+                </div>
+                <div class="feature-card">
+                    <div class="gradient-overlay"></div>
+                    <h3>💬 Community Support</h3>
+                    <p>Join our private community of traders and get ongoing support</p>
+                </div>
+                <div class="feature-card">
+                    <div class="gradient-overlay"></div>
+                    <h3>📈 Live Trading Sessions</h3>
+                    <p>Watch real-time trading analysis and decision-making</p>
+                </div>
+                <div class="feature-card">
+                    <div class="gradient-overlay"></div>
+                    <h3>🎓 Certificate</h3>
+                    <p>Receive a certificate of completion upon finishing the course</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="purchase-title">Complete Your Purchase</h2>
+            <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 35px; font-weight: 400;">
+                Secure checkout - Start learning immediately after payment
+            </p>
+        </div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-container">
+                <!-- User Info Section -->
+                <div class="user-info">
+                    <div id="userDisplay" style="display: none;">
+                        <p style="color: #94a3b8; margin-bottom: 10px;">Logged in as:</p>
+                        <p id="userEmail" style="color: #06b6d4; font-weight: 600; font-size: 1.1rem;"></p>
+                        <button onclick="handleLogout()" class="logout-btn">Logout</button>
+                    </div>
+                </div>
+
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <h3>Checkout Information</h3>
+
+                    <form id="checkoutForm" onsubmit="return handleCheckout(event)">
+                        <!-- Email Section -->
+                        <div class="form-group">
+                            <label for="checkoutEmail">Email Address *</label>
+                            <input type="email" id="checkoutEmail" name="email" placeholder="your@email.com" required>
+                        </div>
+
+                        <!-- Payment Method Selection -->
+                        <div class="form-group">
+                            <label>Payment Method *</label>
+                            <div class="payment-methods">
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="card" checked>
+                                    <span class="payment-label">
+                                        💳 Credit/Debit Card
+                                    </span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="paypal">
+                                    <span class="payment-label">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23003087' width='20' height='20'%3E%3Cpath d='M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 00-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 01-.794.679H7.72a.483.483 0 01-.477-.558L9.22 7.08a.965.965 0 01.952-.814h4.645c.935 0 1.683.094 2.246.298.18.065.35.139.51.224.925.486 1.47 1.314 1.495 2.67z'/%3E%3C/svg%3E"
+                                            style="width: 20px; vertical-align: middle; margin-right: 5px;">
+                                        PayPal
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Card Payment Fields -->
+                        <div id="cardFields">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number *</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiryDate">Expiry Date *</label>
+                                    <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV *</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cardName">Cardholder Name *</label>
+                                <input type="text" id="cardName" placeholder="John Doe">
+                            </div>
+                        </div>
+
+                        <!-- PayPal Fields (Hidden by default) -->
+                        <div id="paypalFields" style="display: none;">
+                            <div class="paypal-info">
+                                <p style="margin-bottom: 20px;">Choose your payment method:</p>
+
+                                <p style="margin-bottom: 20px; font-size: 1rem; color: #cbd5e1;">
+                                    Send your payment via PayPal to complete your purchase:
+                                </p>
+
+                                <!-- PayPal Email Payment Box -->
+                                <div
+                                    style="background: linear-gradient(135deg, rgba(0, 112, 186, 0.15) 0%, rgba(0, 48, 135, 0.15) 100%); padding: 25px; border-radius: 16px; margin-bottom: 25px; border: 2px solid rgba(0, 112, 186, 0.3); box-shadow: 0 8px 25px rgba(0, 112, 186, 0.2);">
+                                    <div style="text-align: center; margin-bottom: 15px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0070ba"
+                                            width="48" height="48" style="margin-bottom: 10px;">
+                                            <path
+                                                d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 00-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 01-.794.679H7.72a.483.483 0 01-.477-.558L9.22 7.08a.965.965 0 01.952-.814h4.645c.935 0 1.683.094 2.246.298.18.065.35.139.51.224.925.486 1.47 1.314 1.495 2.67z" />
+                                        </svg>
+                                    </div>
+                                    <p
+                                        style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 12px; text-align: center;">
+                                        Send <strong style="color: #06b6d4; font-size: 1.3rem;">$500.00 USD</strong> to:
+                                    </p>
+                                    <div
+                                        style="background: rgba(15, 23, 42, 0.8); padding: 18px; border-radius: 12px; text-align: center; border: 1px solid rgba(6, 182, 212, 0.3);">
+                                        <p
+                                            style="color: #06b6d4; font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; word-break: break-all; letter-spacing: 0.5px;">
+                                            info@metahubacademy.com
+                                        </p>
+                                        <button type="button" id="copyEmailBtn" onclick="copyPayPalEmail()"
+                                            style="margin-top: 10px; padding: 8px 20px; background: rgba(6, 182, 212, 0.2); color: #06b6d4; border: 1px solid #06b6d4; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease; position: relative; z-index: 100; pointer-events: auto;">
+                                            📋 Copy Email
+                                        </button>
+                                    </div>
+                                    <div
+                                        style="margin-top: 18px; padding: 15px; background: rgba(6, 182, 212, 0.1); border-radius: 10px; border-left: 3px solid #06b6d4;">
+                                        <p style="color: #cbd5e1; font-size: 0.85rem; line-height: 1.6;">
+                                            <strong>How to pay:</strong><br>
+                                            1. Open PayPal app or website<br>
+                                            2. Send $500 to the email above<br>
+                                            3. Return here and click confirmation button below
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p
+                                    style="margin-bottom: 12px; font-size: 0.95rem; color: #cbd5e1; text-align: center; font-weight: 600;">
+                                    After sending payment:
+                                </p>
+                                <button type="button" onclick="handleManualPayPalPayment()" class="manual-payment-btn">
+                                    ✓ I've Sent Payment via PayPal
+                                </button>
+                                <p style="margin-top: 12px; font-size: 0.85rem; color: #94a3b8; text-align: center;">
+                                    We'll verify and grant access within 24 hours
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="order-summary">
+                            <h4>Order Summary</h4>
+                            <div class="summary-row">
+                                <span>Crypto Trading Video Course</span>
+                                <span>$500.00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span>$500.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Complete Payment Button (for card payments) -->
+                        <button type="submit" class="complete-payment-btn" id="cardPaymentBtn">
+                            🔒 Complete Payment - $500.00
+                        </button>
+
+                        <p class="secure-notice">
+                            🔐 Your payment information is secure and encrypted
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .checkout-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+        }
+
+        .checkout-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+        }
+
+        .checkout-container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .user-info {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.1) 50%, rgba(139, 92, 246, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            padding: 28px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(99, 102, 241, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.4;
+            transition: opacity 0.5s ease;
+        }
+
+        .user-info:hover {
+            transform: translateY(-5px) rotateX(2deg) scale(1.01);
+            box-shadow:
+                0 20px 50px rgba(99, 102, 241, 0.4),
+                0 0 80px rgba(6, 182, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .user-info:hover::before {
+            opacity: 0.8;
+        }
+
+        .user-info::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .user-info:hover::after {
+            opacity: 1;
+        }
+
+        .user-info p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logout-btn {
+            margin-top: 14px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+            color: #fca5a5;
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow:
+                0 4px 15px rgba(239, 68, 68, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+        }
+
+        .logout-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .logout-btn:hover::before {
+            left: 100%;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: #ffffff;
+            border-color: #ef4444;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow:
+                0 8px 25px rgba(239, 68, 68, 0.5),
+                0 0 40px rgba(239, 68, 68, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .logout-btn:active {
+            transform: translateY(-1px) scale(1);
+        }
+
+        .checkout-form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            padding: 28px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(99, 102, 241, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .checkout-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #8b5cf6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
+        .checkout-form:hover {
+            transform: translateY(-8px) rotateX(2deg) scale(1.01);
+            box-shadow:
+                0 30px 80px rgba(99, 102, 241, 0.5),
+                0 0 100px rgba(6, 182, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .checkout-form:hover::before {
+            opacity: 1;
+        }
+
+        .checkout-form::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .checkout-form:hover::after {
+            opacity: 1;
+        }
+
+        .checkout-form h3 {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 22px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            color: #cbd5e1;
+            margin-bottom: 7px;
+            font-weight: 600;
+            font-size: 0.88rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1.5px solid rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #06b6d4;
+            box-shadow:
+                0 0 0 4px rgba(6, 182, 212, 0.1),
+                0 4px 12px rgba(6, 182, 212, 0.15);
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateY(-1px);
+        }
+
+        .form-group input::placeholder {
+            color: #64748b;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            flex: 1;
+            min-width: 200px;
+            cursor: pointer;
+        }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-label {
+            display: block;
+            padding: 14px 20px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .payment-option input[type="radio"]:checked+.payment-label {
+            border-color: #06b6d4;
+            background: rgba(6, 182, 212, 0.15);
+            box-shadow:
+                0 0 0 3px rgba(6, 182, 212, 0.1),
+                0 4px 12px rgba(6, 182, 212, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .payment-label:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .paypal-info {
+            padding: 25px;
+            background: rgba(6, 182, 212, 0.08);
+            border-radius: 12px;
+            color: #cbd5e1;
+            text-align: center;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .paypal-info p {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        #paypal-button-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #copyEmailBtn {
+            position: relative !important;
+            z-index: 1000 !important;
+            pointer-events: auto !important;
+        }
+
+        #copyEmailBtn:hover {
+            background: rgba(6, 182, 212, 0.4) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+        }
+
+        #copyEmailBtn:active {
+            transform: translateY(0);
+        }
+
+        .paypal-direct-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #0070ba 0%, #003087 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 112, 186, 0.4);
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .paypal-direct-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 112, 186, 0.6);
+            background: linear-gradient(135deg, #005ea6 0%, #001f5b 100%);
+        }
+
+        .paypal-direct-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .manual-payment-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+            color: #10b981;
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .manual-payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border-color: #10b981;
+        }
+
+        .manual-payment-btn:active {
+            transform: translateY(0);
+        }
+
+        .order-summary {
+            margin: 28px 0;
+            padding: 22px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 14px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .order-summary h4 {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            border-top: 2px solid rgba(99, 102, 241, 0.3);
+            margin-top: 8px;
+            padding-top: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #06b6d4;
+        }
+
+        .complete-payment-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 50%, #8b5cf6 100%);
+            background-size: 200% 100%;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow:
+                0 6px 20px rgba(99, 102, 241, 0.4),
+                0 0 0 1px rgba(99, 102, 241, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .complete-payment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 12px 35px rgba(99, 102, 241, 0.6),
+                0 0 0 1px rgba(6, 182, 212, 0.4);
+            background-position: 100% 0;
+        }
+
+        .complete-payment-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .secure-notice {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                max-width: 100%;
+            }
+
+            .checkout-form {
+                padding: 24px;
+            }
+
+            .checkout-form h3 {
+                font-size: 1.3rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+            }
+
+            .complete-payment-btn {
+                font-size: 0.95rem;
+                padding: 12px;
+            }
+        }
+    </style>
+
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentUser = localStorage.getItem('metahubCurrentUser');
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('checkoutEmail').value = user.email;
+                document.getElementById('userDisplay').style.display = 'block';
+            }
+
+            // Payment method toggle
+            const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.value === 'card') {
+                        document.getElementById('cardFields').style.display = 'block';
+                        document.getElementById('paypalFields').style.display = 'none';
+                        document.getElementById('cardPaymentBtn').style.display = 'block';
+                    } else {
+                        document.getElementById('cardFields').style.display = 'none';
+                        document.getElementById('paypalFields').style.display = 'block';
+                        document.getElementById('cardPaymentBtn').style.display = 'none';
+                    }
+                });
+            });
+
+            // Copy email button
+            const copyEmailBtn = document.getElementById('copyEmailBtn');
+            if (copyEmailBtn) {
+                copyEmailBtn.addEventListener('click', function () {
+                    copyPayPalEmail();
+                });
+            }
+        });
+
+        function handleLogout() {
+            localStorage.removeItem('metahubCurrentUser');
+            window.location.href = 'index.html';
+        }
+
+        function copyPayPalEmail() {
+            const email = 'info@metahubacademy.com';
+            const btn = document.getElementById('copyEmailBtn');
+
+            // Try to copy to clipboard
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(function () {
+                    // Update button text
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '✓ Copied!';
+                    btn.style.background = 'rgba(16, 185, 129, 0.3)';
+                    btn.style.borderColor = '#10b981';
+                    btn.style.color = '#10b981';
+
+                    setTimeout(function () {
+                        btn.innerHTML = originalText;
+                        btn.style.background = 'rgba(6, 182, 212, 0.2)';
+                        btn.style.borderColor = '#06b6d4';
+                        btn.style.color = '#06b6d4';
+                    }, 2000);
+
+                    alert('✓ Email copied to clipboard!\n\n' + email + '\n\nYou can now paste it in PayPal.');
+                }).catch(function (err) {
+                    console.error('Clipboard error:', err);
+                    // Fallback
+                    fallbackCopyEmail(email);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyEmail(email);
+            }
+        }
+
+        function fallbackCopyEmail(email) {
+            // Create temporary input
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+
+            try {
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                const btn = document.getElementById('copyEmailBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✓ Copied!';
+                btn.style.background = 'rgba(16, 185, 129, 0.3)';
+                btn.style.borderColor = '#10b981';
+                btn.style.color = '#10b981';
+
+                setTimeout(function () {
+                    btn.innerHTML = originalText;
+                    btn.style.background = 'rgba(6, 182, 212, 0.2)';
+                    btn.style.borderColor = '#06b6d4';
+                    btn.style.color = '#06b6d4';
+                }, 2000);
+
+                alert('✓ Email copied!\n\n' + email);
+            } catch (err) {
+                document.body.removeChild(tempInput);
+                // Last resort - show prompt
+                prompt('Copy this email address:', email);
+            }
+        }
+
+        function handleManualPayPalPayment() {
+            const email = document.getElementById('checkoutEmail').value || localStorage.getItem('pendingPayPalEmail');
+
+            if (!email) {
+                alert('Please enter your email address first');
+                return;
+            }
+
+            const confirmation = confirm(
+                'Please confirm:\n\n' +
+                '✓ You have sent $500.00 USD via PayPal\n' +
+                '✓ Your email: ' + email + '\n\n' +
+                'After confirmation, we will verify your payment and grant access within 24 hours.\n\n' +
+                'Click OK to confirm your payment.'
+            );
+
+            if (confirmation) {
+                // Save pending purchase
+                const currentUser = localStorage.getItem('metahubCurrentUser');
+                let userEmail = email;
+
+                if (currentUser) {
+                    const user = JSON.parse(currentUser);
+                    userEmail = user.email;
+                }
+
+                const purchases = JSON.parse(localStorage.getItem('metahubPurchases_' + userEmail) || '[]');
+                purchases.push({
+                    courseId: 'crypto-trading',
+                    purchaseDate: new Date().toISOString(),
+                    orderId: 'MANUAL-' + Date.now(),
+                    amount: 500,
+                    paymentMethod: 'paypal-manual',
+                    status: 'pending'
+                });
+                localStorage.setItem('metahubPurchases_' + userEmail, JSON.stringify(purchases));
+
+                // Clear pending email
+                localStorage.removeItem('pendingPayPalEmail');
+
+                alert(
+                    '✅ Payment confirmation received!\n\n' +
+                    'We will verify your PayPal payment within 24 hours.\n' +
+                    'You will receive an email at ' + email + ' once verified.\n\n' +
+                    'Thank you for your purchase!'
+                );
+
+                setTimeout(function () {
+                    window.location.href = 'my-library.html';
+                }, 2000);
+            }
+        }
+
+        function handleCheckout(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('checkoutEmail').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            if (paymentMethod === 'card') {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                const cardName = document.getElementById('cardName').value;
+
+                if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                    alert('Please fill in all card details');
+                    return false;
+                }
+            }
+
+            // Simulate payment processing
+            alert('Processing payment...\n\nEmail: ' + email + '\nPayment Method: ' + paymentMethod + '\nAmount: $500.00\n\nThis is a demo. In production, this would process the actual payment.');
+
+            // Redirect to success page or library
+            setTimeout(function () {
+                window.location.href = 'index.html';
+            }, 2000);
+
+            return false;
+        }
+
+        // Cursor gradient effect on feature cards
+        document.addEventListener('DOMContentLoaded', function () {
+            const featureCards = document.querySelectorAll('.feature-card');
+
+            featureCards.forEach(card => {
+                card.addEventListener('mousemove', function (e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+                    const overlay = card.querySelector('.gradient-overlay');
+                    if (overlay) {
+                        overlay.style.setProperty('--mouse-x', x + '%');
+                        overlay.style.setProperty('--mouse-y', y + '%');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
