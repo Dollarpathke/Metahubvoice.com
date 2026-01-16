@@ -1,37 +1,57 @@
 @echo off
 echo ========================================
-echo Metahub Voice - GitHub Push Script
+echo  Push to GitHub - sethdev254
 echo ========================================
 echo.
 
-REM Initialize Git repository
-echo [1/5] Initializing Git repository...
-git init
-echo.
+REM Check if git is installed
+git --version >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: Git is not installed!
+    echo Please install Git from: https://git-scm.com/download/win
+    pause
+    exit /b 1
+)
 
-REM Add all files
-echo [2/5] Adding all files...
+echo Step 1: Cleaning up project...
+call cleanup-for-github.bat
+
+echo.
+echo Step 2: Initializing Git repository...
+if not exist .git (
+    git init
+    echo Git repository initialized.
+) else (
+    echo Git repository already exists.
+)
+
+echo.
+echo Step 3: Adding files to Git...
 git add .
-echo.
 
-REM Create initial commit
-echo [3/5] Creating initial commit...
-git commit -m "Initial commit: Metahub Voice - The Voice of Decentralized Wealth"
 echo.
+echo Step 4: Creating commit...
+set /p commit_message="Enter commit message (or press Enter for default): "
+if "%commit_message%"=="" set commit_message=Update BullBear Trading Platform
 
-REM Add remote repository
-echo [4/5] Adding GitHub repository...
-git remote add origin https://github.com/Dollarpathke/Metahubvoice.com.git
+git commit -m "%commit_message%"
+
 echo.
+echo Step 5: Setting up remote repository...
+git remote remove origin 2>nul
+git remote add origin https://github.com/sethdev254/bullbear-trading.git
 
-REM Push to GitHub
-echo [5/5] Pushing to GitHub...
+echo.
+echo Step 6: Pushing to GitHub...
 git branch -M main
 git push -u origin main
-echo.
 
+echo.
 echo ========================================
-echo Done! Your project is now on GitHub!
-echo Repository: https://github.com/Dollarpathke/Metahubvoice.com
+echo  Push Complete!
 echo ========================================
+echo.
+echo Your code is now on GitHub:
+echo https://github.com/sethdev254/bullbear-trading
+echo.
 pause

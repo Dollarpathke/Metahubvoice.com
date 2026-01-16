@@ -1,8 +1,8 @@
-# Metahub Voice Backend API
+# Bull Bear Trading Backend API
 
-🎙️ **The Voice of Decentralized Wealth**
+🎙️ **Master the Markets**
 
-Backend API for Metahub Voice - A comprehensive platform for crypto trading education, affiliate marketing, and Web3 training.
+Backend API for Bull Bear Trading - A comprehensive platform for crypto trading education, affiliate marketing, and Web3 training.
 
 ## Features
 
@@ -195,12 +195,12 @@ FRONTEND_URL=https://metahubvoice.com
 ## Support
 
 For issues or questions:
-- Email: info@metahubacademy.com
+- Email: megametahub42@gmail.com
 - Phone: +1 (973)-8197-530
 
 ## License
 
-MIT License - Metahub Voice © 2025
+MIT License - Bull Bear Trading © 2025
 
 ---
 

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { sendFreePdfEmail } = require('../utils/emailService');
 
 // Generate JWT token
 const generateToken = (userId) => {
@@ -15,7 +16,7 @@ const generateToken = (userId) => {
 // @access  Public
 router.post('/signup', async (req, res) => {
     try {
-        const { email, password, firstName, lastName } = req.body;
+        const { email, password, firstName, lastName, role } = req.body;
 
         // Check if user exists
         const existingUser = await User.findOne({ email });
@@ -31,7 +32,8 @@ router.post('/signup', async (req, res) => {
             email,
             password,
             firstName,
-            lastName
+            lastName,
+            role: role || 'user' // Default to 'user' if no role specified
         });
 
         // Generate token
@@ -134,6 +136,41 @@ router.get('/me', async (req, res) => {
         res.status(401).json({
             status: 'error',
             message: 'Invalid token'
+        });
+    }
+});
+
+// @route   POST /api/auth/send-free-pdf
+// @desc    Send free PDF to user email
+// @access  Public
+router.post('/send-free-pdf', async (req, res) => {
+    try {
+        const { email, name } = req.body;
+
+        if (!email || !name) {
+            return res.status(400).json({
+                status: 'error',
+                message: 'Email and name are required'
+            });
+        }
+
+        const result = await sendFreePdfEmail(email, name);
+
+        if (result.success) {
+            res.json({
+                status: 'success',
+                message: 'PDF sent to your email successfully!'
+            });
+        } else {
+            res.status(500).json({
+                status: 'error',
+                message: 'Failed to send email. Please try again later.'
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            status: 'error',
+            message: error.message
         });
     }
 });

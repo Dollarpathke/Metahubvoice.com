@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 
+// Use mock database if enabled
+if (process.env.USE_MOCK_DB === 'true') {
+    const mockDb = require('../mockDatabase');
+    module.exports = mockDb.Course;
+    return;
+}
+
 const courseSchema = new mongoose.Schema({
     courseId: {
         type: String,

@@ -251,4 +251,4 @@ FRONTEND_URL=https://metahubvoice.com
 
 ---
 
-**🎙️ Metahub Voice - The Voice of Decentralized Wealth**
+**🎙️ Metahub Voice - Master the Markets**

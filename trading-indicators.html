@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Indicators - BullBear Trading</title>
+    <link rel="shortcut icon" href="images/bullbear-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quattrocento Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            animation: backgroundPulse 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Grid Pattern Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(99, 102, 241, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-section img {
+            height: 50px;
+            filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .logo-section:hover img {
+            filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.5));
+            transform: scale(1.05);
+        }
+
+        .logo-section h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Quattrocento Sans', sans-serif;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-button {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Quattrocento Sans', sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .back-button:hover::before {
+            left: 100%;
+        }
+
+        .back-button:hover {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: rgba(99, 102, 241, 0.5);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Quattrocento Sans', sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        .nav-links a:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 40px 80px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            font-family: 'Quattrocento Sans', sans-serif;
+            color: #ffffff;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d4 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px rgba(99, 102, 241, 0.5);
+            animation: titleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .badge {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-family: 'Quattrocento Sans', sans-serif;
+            color: #06b6d4;
+            letter-spacing: 0.3px;
+            font-size: 0.95rem;
+            box-shadow: 
+                0 4px 20px rgba(99, 102, 241, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .badge:hover::before {
+            left: 100%;
+        }
+
+        .badge:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 8px 30px rgba(99, 102, 241, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Quattrocento Sans', sans-serif;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+        }
+
+        .section-title p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 15px;
+        }
+
+        /* Chart Grid */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 35px;
+            margin-bottom: 80px;
+        }
+
+        .chart-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(99, 102, 241, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.1), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .chart-card:hover::before {
+            opacity: 1;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 30px 80px rgba(99, 102, 241, 0.5),
+                0 0 0 1px rgba(99, 102, 241, 0.3),
+                0 0 60px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .chart-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(99, 102, 241, 0.05),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Quattrocento Sans', sans-serif;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .chart-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            font-family: 'Quattrocento Sans', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 
+                0 4px 20px rgba(16, 185, 129, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: livePulse 2s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% {
+                box-shadow: 
+                    0 4px 20px rgba(16, 185, 129, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 
+                    0 4px 30px rgba(16, 185, 129, 0.7),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .chart-description {
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* TradingView Widget Container */
+        .tradingview-widget-container {
+            height: 500px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 2px 10px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Indicator Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(99, 102, 241, 0.4),
+                0 0 40px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.6));
+            animation: iconFloat 4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-family: 'Quattrocento Sans', sans-serif;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 30px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 60px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            animation: ctaRotate 20s linear infinite;
+        }
+
+        @keyframes ctaRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Quattrocento Sans', sans-serif;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.15rem;
+            font-family: 'Quattrocento Sans', sans-serif;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 10px 40px rgba(99, 102, 241, 0.5),
+                0 0 60px rgba(99, 102, 241, 0.3);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 20px 60px rgba(99, 102, 241, 0.7),
+                0 0 80px rgba(99, 102, 241, 0.5);
+            background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Subscription Lock Overlay */
+        .subscription-lock-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .subscription-lock-content {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 0 100px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: fadeInScale 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subscription-lock-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lock-icon-large {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.6));
+            animation: lockPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes lockPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .subscription-lock-content h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .lock-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subscription-price {
+            margin: 25px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #06b6d4;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        .subscription-features {
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sub-feature {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .sub-feature::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .subscribe-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .subscribe-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .subscribe-button:hover::before {
+            left: 100%;
+        }
+
+        .subscribe-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.7);
+        }
+
+        .subscribe-button:active {
+            transform: translateY(-1px) scale(1);
+        }
+
+        .subscription-note {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .subscription-lock-content {
+                padding: 30px 25px;
+                max-width: 100%;
+            }
+
+            .subscription-lock-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .price-amount {
+                font-size: 2.5rem;
+            }
+
+            .lock-icon-large {
+                font-size: 3rem;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tradingview-widget-container {
+                height: 400px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 16px 40px;
+                font-size: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <img src="images/bullbear-logo.png" alt="BullBear Trading">
+            <h1>BullBear Trading</h1>
+        </div>
+        <div class="nav-links">
+            <button onclick="history.back()" class="back-button">
+                <span>←</span> Back
+            </button>
+            <a href="index.html">Home</a>
+            <a href="trading-indicators.html">Indicators</a>
+            <a href="my-library.html">My Library</a>
+            <a href="checklist-signup.html">Free Checklist</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Professional Trading Indicators</h1>
+        <p>Access powerful TradingView indicators designed by professional traders. Get real-time signals, advanced analytics, and proven strategies to maximize your trading success.</p>
+        <div class="hero-badges">
+            <span class="badge">Real-Time Signals</span>
+            <span class="badge">Advanced Analytics</span>
+            <span class="badge">Proven Strategies</span>
+            <span class="badge">High Win Rate</span>
+        </div>
+    </div>
+
+    <!-- Subscription Lock Overlay -->
+    <div id="subscriptionLock" class="subscription-lock-overlay" style="display: flex;">
+        <div class="subscription-lock-content">
+            <div class="lock-icon-large">🔒</div>
+            <h2>Premium Subscription Required</h2>
+            <p class="lock-description">Get unlimited access to professional trading indicators and live charts</p>
+            
+            <div class="subscription-price">
+                <div class="price-amount">$30</div>
+                <div class="price-period">per month</div>
+            </div>
+
+            <div class="subscription-features">
+                <div class="sub-feature">Full access to all trading indicators</div>
+                <div class="sub-feature">Live TradingView charts integration</div>
+                <div class="sub-feature">Real-time market signals</div>
+                <div class="sub-feature">Monthly subscription - cancel anytime</div>
+            </div>
+
+            <button onclick="showSubscriptionPayment()" class="subscribe-button">
+                Subscribe Now - $30/month
+            </button>
+
+            <p class="subscription-note">Secure payment processing • Cancel anytime</p>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container" id="indicatorsContent" style="filter: blur(10px); pointer-events: none;">
+        <!-- Featured Indicators Section -->
+        <div class="section-title">
+            <h2>Live Interactive Trading Charts</h2>
+            <p>Click any chart below to interact - fully functional TradingView charts embedded on this page</p>
+        </div>
+
+        <div class="chart-grid">
+            <!-- Chart 1: BTC/USD -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">Bitcoin (BTC/USD)</div>
+                    <div class="chart-badge">LIVE</div>
+                </div>
+                <div class="chart-description">
+                    Real-time Bitcoin price action with our proprietary trend indicator. Get instant buy/sell signals based on advanced technical analysis.
+                </div>
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_btc"></div>
+                </div>
+            </div>
+
+            <!-- Chart 2: ETH/USD -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">Ethereum (ETH/USD)</div>
+                    <div class="chart-badge">LIVE</div>
+                </div>
+                <div class="chart-description">
+                    Track Ethereum's price movements with momentum indicators and volume analysis for optimal entry and exit points.
+                </div>
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_eth"></div>
+                </div>
+            </div>
+
+            <!-- Chart 3: SPY -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">S&P 500 (SPY)</div>
+                    <div class="chart-badge">LIVE</div>
+                </div>
+                <div class="chart-description">
+                    Monitor the S&P 500 with our multi-timeframe analysis indicator. Perfect for swing traders and day traders.
+                </div>
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_spy"></div>
+                </div>
+            </div>
+
+            <!-- Chart 4: Custom Symbol -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">Gold (XAU/USD)</div>
+                    <div class="chart-badge">LIVE</div>
+                </div>
+                <div class="chart-description">
+                    Gold trading with support/resistance levels and trend reversal signals. Ideal for precious metals traders.
+                </div>
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_gold"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicator Features -->
+        <div class="section-title">
+            <h2>Indicator Features</h2>
+            <p>What makes our indicators stand out</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-title">Precision Signals</div>
+                <div class="feature-description">
+                    Get highly accurate buy and sell signals based on multiple technical indicators and price action analysis.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">Real-Time Alerts</div>
+                <div class="feature-description">
+                    Receive instant notifications when trading opportunities arise. Never miss a profitable trade again.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">Multi-Timeframe Analysis</div>
+                <div class="feature-description">
+                    Analyze trends across multiple timeframes to confirm high-probability setups and reduce false signals.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">Risk Management</div>
+                <div class="feature-description">
+                    Built-in stop-loss and take-profit levels help you manage risk and protect your capital effectively.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">Easy to Use</div>
+                <div class="feature-description">
+                    Simple, clean interface suitable for both beginners and experienced traders. No complex setup required.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">Proven Results</div>
+                <div class="feature-description">
+                    Backtested on years of historical data with consistent profitability across various market conditions.
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Interactive Trading Charts</h2>
+            <p>All charts above are fully interactive - click any chart to explore live data, change timeframes, add indicators, and analyze markets in real-time!</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; position: relative; z-index: 1;">
+                <a href="https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT&interval=15&theme=dark" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: inline-block;">
+                    Open Live Chart with Indicators
+                </a>
+            </div>
+            <p style="margin-top: 25px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); position: relative; z-index: 1;">
+                <strong style="color: #06b6d4;">Pro Tip:</strong> Search for "sethcryptolord" in the indicators panel to add Seth's custom indicators
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2026 BullBear Trading. All rights reserved. | Master the Markets</p>
+        <p style="margin-top: 10px; font-size: 0.85rem;">Developed by <a href="https://twitter.com/starico" target="_blank" style="color: #06b6d4; text-decoration: none; font-weight: 600;">@starico</a></p>
+    </div>
+
+    <!-- TradingView Widget Scripts -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        // Initialize TradingView Widgets
+        
+        // Bitcoin Chart
+        new TradingView.widget({
+            "width": "100%",
+            "height": "100%",
+            "symbol": "BINANCE:BTCUSDT",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#0f172a",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview_btc",
+            "studies": [
+                "RSI@tv-basicstudies",
+                "MASimple@tv-basicstudies",
+                "MACD@tv-basicstudies"
+            ],
+            "backgroundColor": "#0f172a",
+            "gridColor": "rgba(99, 102, 241, 0.1)",
+            "hide_side_toolbar": false,
+            "save_image": false
+        });
+
+        // Ethereum Chart
+        new TradingView.widget({
+            "width": "100%",
+            "height": "100%",
+            "symbol": "BINANCE:ETHUSDT",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#0f172a",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview_eth",
+            "studies": [
+                "BB@tv-basicstudies",
+                "Volume@tv-basicstudies"
+            ],
+            "backgroundColor": "#0f172a",
+            "gridColor": "rgba(99, 102, 241, 0.1)",
+            "hide_side_toolbar": false,
+            "save_image": false
+        });
+
+        // SPY Chart
+        new TradingView.widget({
+            "width": "100%",
+            "height": "100%",
+            "symbol": "AMEX:SPY",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#0f172a",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview_spy",
+            "studies": [
+                "MASimple@tv-basicstudies",
+                "StochasticRSI@tv-basicstudies"
+            ],
+            "backgroundColor": "#0f172a",
+            "gridColor": "rgba(99, 102, 241, 0.1)",
+            "hide_side_toolbar": false,
+            "save_image": false
+        });
+
+        // Gold Chart
+        new TradingView.widget({
+            "width": "100%",
+            "height": "100%",
+            "symbol": "OANDA:XAUUSD",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#0f172a",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview_gold",
+            "studies": [
+                "RSI@tv-basicstudies",
+                "MACD@tv-basicstudies"
+            ],
+            "backgroundColor": "#0f172a",
+            "gridColor": "rgba(99, 102, 241, 0.1)",
+            "hide_side_toolbar": false,
+            "save_image": false
+        });
+    </script>
+
+    <!-- Subscription Management Script -->
+    <script>
+        // Check subscription status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSubscriptionStatus();
+        });
+
+        function checkSubscriptionStatus() {
+            const subscription = localStorage.getItem('indicatorsSubscription');
+            
+            if (subscription) {
+                const subData = JSON.parse(subscription);
+                const expiryDate = new Date(subData.expiryDate);
+                const now = new Date();
+                
+                // Check if subscription is still valid
+                if (expiryDate > now) {
+                    unlockIndicators();
+                    return;
+                }
+            }
+            
+            // Show subscription lock if no valid subscription
+            showSubscriptionLock();
+        }
+
+        function showSubscriptionLock() {
+            document.getElementById('subscriptionLock').style.display = 'flex';
+            document.getElementById('indicatorsContent').style.filter = 'blur(10px)';
+            document.getElementById('indicatorsContent').style.pointerEvents = 'none';
+        }
+
+        function unlockIndicators() {
+            document.getElementById('subscriptionLock').style.display = 'none';
+            document.getElementById('indicatorsContent').style.filter = 'none';
+            document.getElementById('indicatorsContent').style.pointerEvents = 'auto';
+        }
+
+        function showSubscriptionPayment() {
+            // Create payment modal
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                overflow-y: auto;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid rgba(99, 102, 241, 0.3); border-radius: 20px; padding: 40px; max-width: 500px; width: 100%; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8); margin: 20px;">
+                    <h2 style="color: #ffffff; font-size: 2rem; margin-bottom: 20px; text-align: center;">Subscribe to Indicators</h2>
+                    
+                    <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <div style="font-size: 3rem; font-weight: 900; color: #06b6d4;">$30</div>
+                            <div style="color: rgba(255, 255, 255, 0.6);">per month</div>
+                        </div>
+                    </div>
+
+                    <form id="subscriptionForm" onsubmit="return processSubscription(event)">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; color: rgba(255, 255, 255, 0.8); margin-bottom: 8px; font-weight: 600;">Email Address</label>
+                            <input type="email" id="subEmail" required style="width: 100%; padding: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; color: #ffffff; font-size: 1rem;">
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: rgba(255, 255, 255, 0.8); margin-bottom: 8px; font-weight: 600;">Payment Method</label>
+                            <select id="paymentMethod" onchange="togglePaymentInfo()" style="width: 100%; padding: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; color: #ffffff; font-size: 1rem;">
+                                <option value="">Select Payment Method</option>
+                                <option value="mpesa">M-Pesa (Kenya)</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="card">Credit/Debit Card</option>
+                            </select>
+                        </div>
+
+                        <!-- M-Pesa Payment Info -->
+                        <div id="mpesaInfo" style="display: none; background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%); border: 2px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 2.5rem; margin-bottom: 10px;">📱</div>
+                                <h3 style="color: #10b981; font-size: 1.3rem; margin-bottom: 15px; font-weight: 800;">M-Pesa Payment</h3>
+                            </div>
+                            
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; color: rgba(255, 255, 255, 0.8); margin-bottom: 8px; font-weight: 600;">Your M-Pesa Phone Number</label>
+                                <input type="tel" id="mpesaPhone" placeholder="0799997293" pattern="[0-9]{10}" maxlength="10" style="width: 100%; padding: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; color: #ffffff; font-size: 1.1rem; text-align: center; font-weight: 600; letter-spacing: 1px;">
+                                <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin-top: 8px; text-align: center;">Enter your Safaricom number (e.g., 0712345678)</p>
+                            </div>
+
+                            <div style="background: rgba(15, 23, 42, 0.6); border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-bottom: 8px;">Amount to Pay:</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #10b981; text-align: center;">KES 3,900</div>
+                                <div style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; text-align: center; margin-top: 5px;">(Approx. $30 USD)</div>
+                            </div>
+
+                            <button type="button" onclick="initiateMpesaPayment()" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-bottom: 15px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);">
+                                📱 Send Payment Prompt
+                            </button>
+
+                            <div style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 8px; padding: 12px;">
+                                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; text-align: center; margin: 0;">
+                                    ⚡ You will receive a prompt on your phone to enter your M-Pesa PIN
+                                </p>
+                            </div>
+
+                            <!-- Payment to number info -->
+                            <div style="margin-top: 15px; padding: 12px; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 8px;">
+                                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; text-align: center; margin: 0;">
+                                    Payment will be sent to: <strong style="color: #10b981;">0799997293</strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- PayPal Payment Info -->
+                        <div id="paypalInfo" style="display: none; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; text-align: center;">
+                                Pay $30 via PayPal: <a href="https://www.paypal.com/paypalme/megametahub42/30" target="_blank" style="color: #06b6d4; text-decoration: underline; font-weight: 600;">Click here to pay</a>
+                            </p>
+                        </div>
+
+                        <!-- Card Payment Info -->
+                        <div id="cardInfo" style="display: none; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; text-align: center;">
+                                Card payment processing will be available soon. Please use M-Pesa or PayPal.
+                            </p>
+                        </div>
+
+                        <button type="submit" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); color: #ffffff; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-bottom: 15px; transition: all 0.3s ease;">
+                            Confirm Subscription
+                        </button>
+
+                        <button type="button" onclick="this.closest('div').parentElement.remove()" style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function togglePaymentInfo() {
+            const method = document.getElementById('paymentMethod').value;
+            
+            // Hide all payment info sections
+            document.getElementById('mpesaInfo').style.display = 'none';
+            document.getElementById('paypalInfo').style.display = 'none';
+            document.getElementById('cardInfo').style.display = 'none';
+            
+            // Show selected payment info
+            if (method === 'mpesa') {
+                document.getElementById('mpesaInfo').style.display = 'block';
+            } else if (method === 'paypal') {
+                document.getElementById('paypalInfo').style.display = 'block';
+            } else if (method === 'card') {
+                document.getElementById('cardInfo').style.display = 'block';
+            }
+        }
+
+        async function initiateMpesaPayment() {
+            const phoneNumber = document.getElementById('mpesaPhone').value;
+            const email = document.getElementById('subEmail').value;
+            
+            // Validate phone number
+            if (!phoneNumber || phoneNumber.length !== 10) {
+                alert('Please enter a valid 10-digit M-Pesa phone number (e.g., 0712345678)');
+                return;
+            }
+
+            // Validate email
+            if (!email) {
+                alert('Please enter your email address first');
+                return;
+            }
+
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏳ Sending prompt...';
+            button.disabled = true;
+            button.style.opacity = '0.7';
+
+            try {
+                // Call backend API to initiate STK Push
+                const response = await fetch('http://localhost:5000/api/mpesa/stkpush', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        phoneNumber: phoneNumber,
+                        amount: 3900, // KES 3,900
+                        accountReference: email,
+                        transactionDesc: 'BullBear Indicators Subscription'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Show prompt sent message
+                    button.innerHTML = '✅ Prompt Sent!';
+                    button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    
+                    // Show instruction modal
+                    const promptModal = document.createElement('div');
+                    promptModal.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+                        border: 2px solid rgba(16, 185, 129, 0.5);
+                        border-radius: 16px;
+                        padding: 30px;
+                        max-width: 400px;
+                        width: 90%;
+                        z-index: 10001;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+                        animation: slideIn 0.3s ease;
+                    `;
+                    
+                    promptModal.innerHTML = `
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 15px; animation: pulse 1.5s infinite;">📱</div>
+                            <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 15px; font-weight: 800;">Check Your Phone!</h3>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                                An M-Pesa payment prompt has been sent to:<br>
+                                <strong style="color: #10b981; font-size: 1.2rem;">${phoneNumber}</strong>
+                            </p>
+                            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+                                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">
+                                    <strong style="color: #10b981;">Next Steps:</strong><br>
+                                    1. Check your phone for M-Pesa prompt<br>
+                                    2. Enter your M-Pesa PIN<br>
+                                    3. Confirm payment of KES 3,900<br>
+                                    4. Wait for confirmation SMS
+                                </p>
+                            </div>
+                            <div style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 8px; padding: 12px; margin-bottom: 15px;">
+                                <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin: 0;">
+                                    Transaction ID: <strong style="color: #06b6d4;">${data.data.CheckoutRequestID.substring(0, 20)}...</strong>
+                                </p>
+                            </div>
+                            <button onclick="this.parentElement.parentElement.remove()" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer;">
+                                Got It!
+                            </button>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(promptModal);
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                        button.style.opacity = '1';
+                        button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    }, 3000);
+                } else {
+                    throw new Error(data.message || 'Failed to send payment prompt');
+                }
+            } catch (error) {
+                console.error('M-Pesa Error:', error);
+                alert('Failed to send payment prompt. Please try again or contact support.');
+                
+                // Reset button
+                button.innerHTML = originalText;
+                button.disabled = false;
+                button.style.opacity = '1';
+            }
+        }
+
+        function processSubscription(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('subEmail').value;
+            
+            // Calculate expiry date (30 days from now)
+            const expiryDate = new Date();
+            expiryDate.setDate(expiryDate.getDate() + 30);
+            
+            // Save subscription to localStorage
+            const subscription = {
+                email: email,
+                startDate: new Date().toISOString(),
+                expiryDate: expiryDate.toISOString(),
+                amount: 30,
+                status: 'active'
+            };
+            
+            localStorage.setItem('indicatorsSubscription', JSON.stringify(subscription));
+            
+            // Show success message
+            alert('Subscription activated! You now have full access to all indicators for 30 days.');
+            
+            // Close modal and unlock content
+            event.target.closest('div').parentElement.remove();
+            unlockIndicators();
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

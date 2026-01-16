@@ -56,7 +56,7 @@ Open Command Prompt or PowerShell in your project folder and run:
 ```bash
 git init
 git add .
-git commit -m "Initial commit: Metahub Voice - The Voice of Decentralized Wealth"
+git commit -m "Initial commit: Bull Bear Trading - Master the Markets"
 git remote add origin https://github.com/Dollarpathke/Metahubvoice.com.git
 git branch -M main
 git push -u origin main

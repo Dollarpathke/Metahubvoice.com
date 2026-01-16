@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Test Purchase Flow</title>
     <style>
@@ -9,6 +10,7 @@
             background: #1e293b;
             color: white;
         }
+
         button {
             padding: 15px 30px;
             margin: 10px;
@@ -19,9 +21,11 @@
             border: none;
             border-radius: 8px;
         }
+
         button:hover {
             background: #0891b2;
         }
+
         .output {
             background: #0f172a;
             padding: 20px;
@@ -29,6 +33,7 @@
             border-radius: 8px;
             border: 1px solid #334155;
         }
+
         input {
             padding: 10px;
             font-size: 16px;
@@ -37,9 +42,10 @@
         }
     </style>
 </head>
+
 <body>
     <h1>🧪 Test Purchase Flow</h1>
-    
+
     <div>
         <h2>1. Add Test Purchase</h2>
         <input type="email" id="testEmail" placeholder="Enter email" value="test@example.com">
@@ -81,11 +87,11 @@
                 status: 'pending'
             });
             localStorage.setItem('metahubPurchases_' + email, JSON.stringify(purchases));
-            
+
             // Also set current user
             localStorage.setItem('metahubCurrentUser', JSON.stringify({ email: email }));
-            
-            document.getElementById('output').innerHTML = 
+
+            document.getElementById('output').innerHTML =
                 '<strong>✅ Purchase Added!</strong><br>' +
                 'Email: ' + email + '<br>' +
                 'Purchases: ' + purchases.length + '<br>' +
@@ -97,19 +103,19 @@
             const email = document.getElementById('testEmail').value;
             const purchases = JSON.parse(localStorage.getItem('metahubPurchases_' + email) || '[]');
             const currentUser = localStorage.getItem('metahubCurrentUser');
-            
+
             let output = '<strong>📊 Purchase Data:</strong><br><br>';
             output += 'Email: ' + email + '<br>';
             output += 'Current User: ' + (currentUser || 'None') + '<br>';
             output += 'Purchases Found: ' + purchases.length + '<br><br>';
-            
+
             if (purchases.length > 0) {
                 output += '<strong>Purchases:</strong><br>';
                 output += '<pre>' + JSON.stringify(purchases, null, 2) + '</pre>';
             } else {
                 output += '<em>No purchases found for this email</em>';
             }
-            
+
             // Show all localStorage keys
             output += '<br><strong>All Storage Keys:</strong><br>';
             for (let i = 0; i < localStorage.length; i++) {
@@ -118,7 +124,7 @@
                     output += '- ' + key + '<br>';
                 }
             }
-            
+
             document.getElementById('output').innerHTML = output;
         }
 
@@ -132,9 +138,10 @@
         }
 
         // Auto-load on page load
-        window.onload = function() {
+        window.onload = function () {
             viewPurchases();
         };
     </script>
-</body>
+<script src="futuristic-enhancements.js"></script></body>
+
 </html>

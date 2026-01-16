@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Trading Video Course - $500 | Metahub Voice</title>
+    <title>Crypto Trading Video Course - $500 | Bull Bear Trading</title>
 
     <style>
         * {
@@ -50,21 +50,37 @@
             transform: translateX(-3px);
         }
 
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
         .logo-image {
-            height: 45px;
+            height: 55px;
             width: auto;
-            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .logo:hover .logo-image {
-            filter: brightness(1.1);
+            filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.3));
+            transform: scale(1.02);
         }
 
         .logo-text {
-            font-size: 1.5rem;
-            font-weight: 900;
+            font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: #ffffff;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .logo-text span {
@@ -73,11 +89,11 @@
 
         @media (max-width: 768px) {
             .logo-text {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .logo-image {
-                height: 35px;
+                height: 45px;
             }
         }
 
@@ -865,53 +881,313 @@
             left: 100%;
         }
 
+        /* Locked Content Overlay Styles */
+        .course-purchase-section {
+            padding: 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .course-purchase-section .container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Locked Course Card - Compact & Centered */
+        .locked-course-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .course-card-header {
+            margin-bottom: 25px;
+        }
+
+        .locked-course-card .lock-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6));
+            animation: lockPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes lockPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .locked-course-card h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #06b6d4;
+            margin-top: 10px;
+        }
+
+        .course-description {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .course-features-compact {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            text-align: left;
+        }
+
+        .feature-item {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        /* Payment Section - Compact */
+        .payment-section-compact {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-section-compact h3 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .payment-section-compact .form-group {
+            margin-bottom: 18px;
+        }
+
+        .payment-section-compact label {
+            display: block;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .payment-section-compact input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .payment-section-compact input:focus {
+            outline: none;
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+
+        .payment-section-compact input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .payment-methods-compact {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .payment-methods-compact .payment-option {
+            cursor: pointer;
+        }
+
+        .payment-methods-compact input[type="radio"] {
+            display: none;
+        }
+
+        .payment-methods-compact .payment-label {
+            display: block;
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .payment-methods-compact input[type="radio"]:checked + .payment-label {
+            border-color: #06b6d4;
+            background: rgba(6, 182, 212, 0.15);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+
+        .payment-methods-compact .payment-label:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .form-row-compact {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 12px;
+        }
+
+        .paypal-info-compact {
+            padding: 20px;
+            background: rgba(6, 182, 212, 0.08);
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .paypal-direct-btn-compact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #0070ba 0%, #003087 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 112, 186, 0.4);
+        }
+
+        .paypal-direct-btn-compact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 112, 186, 0.6);
+        }
+
+        .complete-payment-btn-compact {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            margin-top: 10px;
+        }
+
+        .complete-payment-btn-compact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6);
+        }
+
+        .secure-notice-compact {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+
         @media (max-width: 768px) {
-            .course-hero {
-                padding: 60px 20px 40px;
+            .course-purchase-section {
+                padding: 40px 15px;
             }
 
-            .course-hero h1 {
-                font-size: 2rem;
-                letter-spacing: -1px;
-            }
-
-            .price {
-                font-size: 2.2rem;
-            }
-
-            .section h2 {
-                font-size: 1.5rem;
-                letter-spacing: -0.5px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .video-container {
-                margin: 25px auto;
+            .course-purchase-section .container {
                 max-width: 100%;
             }
 
-            .video-placeholder {
-                font-size: 0.9rem;
+            .locked-course-card {
+                padding: 25px;
             }
 
-            .video-placeholder::before {
+            .locked-course-card .lock-icon {
+                font-size: 2.5rem;
+            }
+
+            .locked-course-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .price-tag {
                 font-size: 2rem;
             }
 
-            .cta-section {
-                padding: 50px 20px;
+            .course-features-compact {
+                grid-template-columns: 1fr;
             }
 
-            .cta-section h2 {
-                font-size: 1.8rem;
+            .payment-section-compact {
+                padding: 25px 20px;
             }
 
-            .purchase-title {
-                font-size: 2rem;
-                letter-spacing: -1px;
+            .payment-section-compact h3 {
+                font-size: 1.3rem;
+            }
+
+            .payment-methods-compact {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row-compact {
+                grid-template-columns: 1fr;
+            }
+
+            .header .container > div {
+                gap: 10px !important;
+            }
+            
+            a[href="my-library.html"], button[onclick="logout()"] {
+                padding: 10px 16px !important;
+                font-size: 0.85rem !important;
+            }
+            
+            button[onclick="logout()"] span {
+                gap: 6px !important;
+            }
+            
+            button[onclick="logout()"] svg {
+                width: 14px !important;
+                height: 14px !important;
             }
         }
     </style>
@@ -921,90 +1197,265 @@
     <header class="header">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <a href="index.html" class="logo">
-                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/Yg29nKaXyGhLNJy1/metahub-academy-logo-design-AVL7EDKb09IvqJG4.png"
-                    alt="Metahub Voice Logo" class="logo-image">
-                <span class="logo-text">METAHUB <span>VOICE</span></span>
+                <img src="images/bullbear-logo.png"
+                    alt="Bull Bear Trading Logo" class="logo-image">
+                <span class="logo-text">BULL BEAR <span>TRADING</span></span>
             </a>
-            <a href="my-library.html"
-                style="color: #ffffff; text-decoration: none; font-weight: 600; padding: 10px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; transition: all 0.3s ease; font-size: 0.95rem;">
-                📚 My Library
-            </a>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <button onclick="history.back()" 
+                    style="color: #ffffff; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); font-weight: 600; padding: 12px 24px; border-radius: 12px; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); font-size: 0.95rem; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); display: flex; align-items: center; gap: 8px;">
+                    <span>←</span> Back
+                </button>
+                <a href="my-library.html"
+                    style="color: #ffffff; text-decoration: none; font-weight: 600; padding: 12px 24px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); font-size: 0.95rem; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                    📚 My Library
+                </a>
+                <button onclick="logout()" 
+                    style="color: #ffffff; background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(220, 38, 38, 0.3) 100%); border: 1px solid rgba(239, 68, 68, 0.4); font-weight: 700; padding: 12px 24px; border-radius: 12px; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); font-size: 0.95rem; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; letter-spacing: 0.5px; text-transform: uppercase;">
+                    <span style="position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Logout
+                    </span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <section class="course-hero">
+    <style>
+        a[href="my-library.html"]:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3) !important;
+            border-color: rgba(99, 102, 241, 0.3) !important;
+        }
+
+        button[onclick="logout()"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        button[onclick="logout()"]:hover::before {
+            left: 100%;
+        }
+
+        button[onclick="logout()"]:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+            border-color: rgba(239, 68, 68, 0.6) !important;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(220, 38, 38, 0.4) 100%) !important;
+        }
+
+        button[onclick="logout()"]:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .header .container > div {
+                gap: 10px !important;
+            }
+            
+            a[href="my-library.html"], button[onclick="logout()"] {
+                padding: 10px 16px !important;
+                font-size: 0.85rem !important;
+            }
+            
+            button[onclick="logout()"] span {
+                gap: 6px !important;
+            }
+            
+            button[onclick="logout()"] svg {
+                width: 14px !important;
+                height: 14px !important;
+            }
+        }
+    </style>
+
+    <script>
+        function logout() {
+            // Create modern confirmation modal
+            const confirmed = confirm('🚪 Logout Confirmation\n\nAre you sure you want to logout from your account?');
+            
+            if (confirmed) {
+                // Add loading state
+                const btn = event.target.closest('button');
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = '<span style="position: relative; z-index: 1;">Logging out...</span>';
+                btn.style.pointerEvents = 'none';
+                
+                // Simulate logout process
+                setTimeout(() => {
+                    // Clear user session
+                    localStorage.removeItem('bullbearCurrentUser');
+                    localStorage.removeItem('bullbearAdmin');
+                    
+                    // Show success message
+                    alert('✅ Logged out successfully!\n\nYou will be redirected to the homepage.');
+                    
+                    // Redirect to homepage
+                    window.location.href = 'index.html';
+                }, 800);
+            }
+        }
+    </script>
+
+    <!-- Centered Course Card & Payment Section -->
+    <section class="course-purchase-section">
         <div class="container">
-            <h1>Crypto Trading Video Course</h1>
-            <p>Master cryptocurrency trading with our comprehensive video course</p>
-        </div>
-    </section>
-
-    <div class="video-container">
-        <div class="video-placeholder">
-            📹 Course Preview Video
-            <br>
-            <small style="font-size: 0.8rem;">(Add your video embed code here)</small>
-        </div>
-    </div>
-
-    <section class="course-content">
-        <div class="section">
-            <h2>What You'll Learn</h2>
-            <ul>
-                <li>Technical analysis fundamentals and advanced strategies</li>
-                <li>Chart patterns and trading indicators</li>
-                <li>Risk management and position sizing</li>
-                <li>Cryptocurrency market psychology</li>
-                <li>Trading strategies for bull and bear markets</li>
-                <li>Portfolio management and diversification</li>
-                <li>DeFi and yield farming opportunities</li>
-                <li>Tax implications and legal considerations</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Course Features</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="gradient-overlay"></div>
-                    <h3>📚 50+ Video Lessons</h3>
-                    <p>Comprehensive video tutorials covering all aspects of crypto trading</p>
+            <!-- Locked Course Card -->
+            <div id="lockedCourseCard" class="locked-course-card">
+                <div class="course-card-header">
+                    <div class="lock-icon">🔒</div>
+                    <h2>Crypto Trading Video Course</h2>
+                    <div class="price-tag">$500</div>
                 </div>
-                <div class="feature-card">
-                    <div class="gradient-overlay"></div>
-                    <h3>⏰ Lifetime Access</h3>
-                    <p>Learn at your own pace with unlimited access to all course materials</p>
-                </div>
-                <div class="feature-card">
-                    <div class="gradient-overlay"></div>
-                    <h3>📊 Trading Tools</h3>
-                    <p>Exclusive access to trading spreadsheets and analysis tools</p>
-                </div>
-                <div class="feature-card">
-                    <div class="gradient-overlay"></div>
-                    <h3>💬 Community Support</h3>
-                    <p>Join our private community of traders and get ongoing support</p>
-                </div>
-                <div class="feature-card">
-                    <div class="gradient-overlay"></div>
-                    <h3>📈 Live Trading Sessions</h3>
-                    <p>Watch real-time trading analysis and decision-making</p>
-                </div>
-                <div class="feature-card">
-                    <div class="gradient-overlay"></div>
-                    <h3>🎓 Certificate</h3>
-                    <p>Receive a certificate of completion upon finishing the course</p>
+                
+                <div class="course-card-body">
+                    <p class="course-description">Master cryptocurrency trading with our comprehensive video course</p>
+                    
+                    <div class="course-features-compact">
+                        <div class="feature-item">✓ 50+ Video Lessons</div>
+                        <div class="feature-item">✓ Lifetime Access</div>
+                        <div class="feature-item">✓ Trading Tools</div>
+                        <div class="feature-item">✓ Community Support</div>
+                        <div class="feature-item">✓ Live Sessions</div>
+                        <div class="feature-item">✓ Certificate</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="cta-section">
-        <div class="container">
-            <h2 class="purchase-title">Complete Your Purchase</h2>
-            <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 35px; font-weight: 400;">
-                Secure checkout - Start learning immediately after payment
-            </p>
+            <!-- Payment Section - Directly Below Card -->
+            <div id="paymentSection" class="payment-section-compact">
+                <h3>Complete Your Purchase</h3>
+                
+                <form id="checkoutForm" onsubmit="return handleCheckout(event)">
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="checkoutEmail">Email Address *</label>
+                        <input type="email" id="checkoutEmail" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="form-group">
+                        <label>Payment Method *</label>
+                        <div class="payment-methods-compact" style="grid-template-columns: repeat(3, 1fr);">
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <span class="payment-label">💳 Card</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="paypal">
+                                <span class="payment-label">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23003087' width='16' height='16'%3E%3Cpath d='M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 00-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 01-.794.679H7.72a.483.483 0 01-.477-.558L9.22 7.08a.965.965 0 01.952-.814h4.645c.935 0 1.683.094 2.246.298.18.065.35.139.51.224.925.486 1.47 1.314 1.495 2.67z'/%3E%3C/svg%3E"
+                                        style="width: 16px; vertical-align: middle; margin-right: 5px;">
+                                    PayPal
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="mpesa">
+                                <span class="payment-label">📱 M-Pesa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Card Payment Fields -->
+                    <div id="cardFields">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number *</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+
+                        <div class="form-row-compact">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry *</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV *</label>
+                                <input type="text" id="cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cardName">Cardholder Name *</label>
+                            <input type="text" id="cardName" placeholder="John Doe">
+                        </div>
+                    </div>
+
+                    <!-- PayPal Fields -->
+                    <div id="paypalFields" style="display: none;">
+                        <div class="paypal-info-compact">
+                            <p style="margin-bottom: 15px; font-size: 0.95rem; color: #e2e8f0;">Pay securely with PayPal:</p>
+                            
+                            <a href="https://www.paypal.com/paypalme/megametahub42/500" 
+                               class="paypal-direct-btn-compact"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='20' height='20'%3E%3Cpath d='M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 00-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 01-.794.679H7.72a.483.483 0 01-.477-.558L9.22 7.08a.965.965 0 01.952-.814h4.645c.935 0 1.683.094 2.246.298.18.065.35.139.51.224.925.486 1.47 1.314 1.495 2.67z'/%3E%3C/svg%3E"
+                                    style="width: 20px; margin-right: 8px;">
+                                Pay $500 with PayPal
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- M-Pesa Fields -->
+                    <div id="mpesaFields" style="display: none;">
+                        <div class="paypal-info-compact" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2);">
+                            <p style="margin-bottom: 15px; font-size: 0.95rem; color: #e2e8f0;">
+                                📱 Pay with M-Pesa (Safaricom)
+                            </p>
+                            
+                            <div class="form-group">
+                                <label for="mpesaPhone">M-Pesa Phone Number *</label>
+                                <input type="tel" 
+                                       id="mpesaPhone" 
+                                       placeholder="254712345678" 
+                                       maxlength="12"
+                                       style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(16, 185, 129, 0.3); color: #ffffff; padding: 12px 16px; border-radius: 8px; width: 100%;">
+                            </div>
+                            
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 0.85rem; color: #10b981;">
+                                <p style="margin: 0 0 8px 0; font-weight: 600;">How it works:</p>
+                                <ol style="margin: 0; padding-left: 20px; line-height: 1.6;">
+                                    <li>Enter your M-Pesa phone number</li>
+                                    <li>Click "Pay with M-Pesa"</li>
+                                    <li>You'll receive an STK push prompt</li>
+                                    <li>Enter your M-Pesa PIN to complete</li>
+                                </ol>
+                            </div>
+                            
+                            <button type="button" 
+                                    onclick="initiateMpesaPayment()" 
+                                    class="paypal-direct-btn-compact"
+                                    style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); margin-top: 15px; width: 100%;">
+                                📱 Pay KES 50,000 with M-Pesa
+                            </button>
+                            
+                            <p style="margin-top: 10px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); text-align: center;">
+                                Approximately $500 USD at current rates
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Complete Payment Button -->
+                    <button type="submit" class="complete-payment-btn-compact" id="cardPaymentBtn">
+                        🔒 Complete Payment - $500.00
+                    </button>
+
+                    <p class="secure-notice-compact">
+                        🔐 Secure payment processing
+                    </p>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -1080,57 +1531,25 @@
                         <!-- PayPal Fields (Hidden by default) -->
                         <div id="paypalFields" style="display: none;">
                             <div class="paypal-info">
-                                <p style="margin-bottom: 20px;">Choose your payment method:</p>
-
-                                <p style="margin-bottom: 20px; font-size: 1rem; color: #cbd5e1;">
-                                    Send your payment via PayPal to complete your purchase:
+                                <p style="margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; color: #e2e8f0;">Complete your purchase with PayPal:</p>
+                                
+                                <p style="margin-bottom: 25px; color: #94a3b8;">
+                                    Click the button below to securely pay via PayPal. You'll be redirected to PayPal to complete your $500 payment.
                                 </p>
-
-                                <!-- PayPal Email Payment Box -->
-                                <div
-                                    style="background: linear-gradient(135deg, rgba(0, 112, 186, 0.15) 0%, rgba(0, 48, 135, 0.15) 100%); padding: 25px; border-radius: 16px; margin-bottom: 25px; border: 2px solid rgba(0, 112, 186, 0.3); box-shadow: 0 8px 25px rgba(0, 112, 186, 0.2);">
-                                    <div style="text-align: center; margin-bottom: 15px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0070ba"
-                                            width="48" height="48" style="margin-bottom: 10px;">
-                                            <path
-                                                d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 00-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 01-.794.679H7.72a.483.483 0 01-.477-.558L9.22 7.08a.965.965 0 01.952-.814h4.645c.935 0 1.683.094 2.246.298.18.065.35.139.51.224.925.486 1.47 1.314 1.495 2.67z" />
-                                        </svg>
-                                    </div>
-                                    <p
-                                        style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 12px; text-align: center;">
-                                        Send <strong style="color: #06b6d4; font-size: 1.3rem;">$500.00 USD</strong> to:
-                                    </p>
-                                    <div
-                                        style="background: rgba(15, 23, 42, 0.8); padding: 18px; border-radius: 12px; text-align: center; border: 1px solid rgba(6, 182, 212, 0.3);">
-                                        <p
-                                            style="color: #06b6d4; font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; word-break: break-all; letter-spacing: 0.5px;">
-                                            info@metahubacademy.com
-                                        </p>
-                                        <button type="button" id="copyEmailBtn" onclick="copyPayPalEmail()"
-                                            style="margin-top: 10px; padding: 8px 20px; background: rgba(6, 182, 212, 0.2); color: #06b6d4; border: 1px solid #06b6d4; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease; position: relative; z-index: 100; pointer-events: auto;">
-                                            📋 Copy Email
-                                        </button>
-                                    </div>
-                                    <div
-                                        style="margin-top: 18px; padding: 15px; background: rgba(6, 182, 212, 0.1); border-radius: 10px; border-left: 3px solid #06b6d4;">
-                                        <p style="color: #cbd5e1; font-size: 0.85rem; line-height: 1.6;">
-                                            <strong>How to pay:</strong><br>
-                                            1. Open PayPal app or website<br>
-                                            2. Send $500 to the email above<br>
-                                            3. Return here and click confirmation button below
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p
-                                    style="margin-bottom: 12px; font-size: 0.95rem; color: #cbd5e1; text-align: center; font-weight: 600;">
-                                    After sending payment:
-                                </p>
-                                <button type="button" onclick="handleManualPayPalPayment()" class="manual-payment-btn">
-                                    ✓ I've Sent Payment via PayPal
-                                </button>
-                                <p style="margin-top: 12px; font-size: 0.85rem; color: #94a3b8; text-align: center;">
-                                    We'll verify and grant access within 24 hours
+                                
+                                <!-- Direct PayPal Button -->
+                                <a href="https://www.paypal.com/paypalme/megametahub42/500" 
+                                   class="paypal-direct-btn"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='24' height='24'%3E%3Cpath d='M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 00-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 01-.794.679H7.72a.483.483 0 01-.477-.558L9.22 7.08a.965.965 0 01.952-.814h4.645c.935 0 1.683.094 2.246.298.18.065.35.139.51.224.925.486 1.47 1.314 1.495 2.67z'/%3E%3C/svg%3E"
+                                        style="width: 24px; margin-right: 10px;">
+                                    Pay $500 with PayPal
+                                </a>
+                                
+                                <p style="margin-top: 20px; font-size: 0.85rem; color: #94a3b8; text-align: center;">
+                                    🔐 Secure payment processing via PayPal<br>
+                                    After payment, contact us to activate your course access
                                 </p>
                             </div>
                         </div>
@@ -1683,7 +2102,7 @@
     </style>
 
     <script>
-        // Check if user is logged in
+        // Check if user is logged in and course access
         document.addEventListener('DOMContentLoaded', function () {
             const currentUser = localStorage.getItem('metahubCurrentUser');
             if (currentUser) {
@@ -1693,18 +2112,33 @@
                 document.getElementById('userDisplay').style.display = 'block';
             }
 
+            // Check if user has already purchased this course
+            checkCourseAccess();
+
             // Payment method toggle
             const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
             paymentRadios.forEach(radio => {
                 radio.addEventListener('change', function () {
+                    const cardFields = document.getElementById('cardFields');
+                    const paypalFields = document.getElementById('paypalFields');
+                    const mpesaFields = document.getElementById('mpesaFields');
+                    const cardPaymentBtn = document.getElementById('cardPaymentBtn');
+                    
                     if (this.value === 'card') {
-                        document.getElementById('cardFields').style.display = 'block';
-                        document.getElementById('paypalFields').style.display = 'none';
-                        document.getElementById('cardPaymentBtn').style.display = 'block';
-                    } else {
-                        document.getElementById('cardFields').style.display = 'none';
-                        document.getElementById('paypalFields').style.display = 'block';
-                        document.getElementById('cardPaymentBtn').style.display = 'none';
+                        cardFields.style.display = 'block';
+                        paypalFields.style.display = 'none';
+                        mpesaFields.style.display = 'none';
+                        cardPaymentBtn.style.display = 'block';
+                    } else if (this.value === 'paypal') {
+                        cardFields.style.display = 'none';
+                        paypalFields.style.display = 'block';
+                        mpesaFields.style.display = 'none';
+                        cardPaymentBtn.style.display = 'none';
+                    } else if (this.value === 'mpesa') {
+                        cardFields.style.display = 'none';
+                        paypalFields.style.display = 'none';
+                        mpesaFields.style.display = 'block';
+                        cardPaymentBtn.style.display = 'none';
                     }
                 });
             });
@@ -1716,133 +2150,147 @@
                     copyPayPalEmail();
                 });
             }
+
+            // Initialize PayPal integration for this page
+            initializePayPalForCourse();
+
+            // Enable payment unlock when user interacts with form
+            enablePaymentUnlock();
         });
+
+        // Check if user has already purchased the course
+        function checkCourseAccess() {
+            const currentUser = localStorage.getItem('metahubCurrentUser');
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                const purchases = JSON.parse(localStorage.getItem('metahubPurchases_' + user.email) || '[]');
+                
+                // Check if user has purchased this course
+                const hasPurchased = purchases.some(p => p.courseId === 'crypto-trading' && p.status === 'completed');
+                
+                if (hasPurchased) {
+                    unlockContent();
+                    // Hide checkout section for users who already purchased
+                    const checkoutSection = document.querySelector('.checkout-section');
+                    if (checkoutSection) {
+                        checkoutSection.innerHTML = `
+                            <div class="container" style="text-align: center; padding: 60px 20px;">
+                                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%); 
+                                            border: 2px solid #10b981; border-radius: 20px; padding: 40px; max-width: 600px; margin: 0 auto;
+                                            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);">
+                                    <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+                                    <h2 style="color: #10b981; font-size: 2rem; margin-bottom: 15px;">Course Already Purchased!</h2>
+                                    <p style="color: #cbd5e1; font-size: 1.1rem; margin-bottom: 25px;">
+                                        You have full access to all course materials. Enjoy your learning journey!
+                                    </p>
+                                    <a href="my-library.html" style="display: inline-block; padding: 16px 40px; 
+                                       background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; 
+                                       text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem;
+                                       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); transition: all 0.3s ease;">
+                                        📚 Go to My Library
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            }
+        }
+
+        // Enable content unlock when user interacts with payment form
+        function enablePaymentUnlock() {
+            const checkoutForm = document.getElementById('checkoutForm');
+            const paymentInputs = checkoutForm.querySelectorAll('input');
+            
+            paymentInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    // Unlock content when user starts filling payment details
+                    unlockContent();
+                    showUnlockNotification();
+                });
+            });
+
+            // Also unlock when payment method is selected
+            const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    unlockContent();
+                    showUnlockNotification();
+                });
+            });
+        }
+
+        // Unlock the course content
+        function unlockContent() {
+            document.body.classList.add('content-unlocked');
+            
+            // Smooth scroll to show unlocked content
+            setTimeout(() => {
+                const coursePreview = document.getElementById('coursePreview');
+                if (coursePreview && !document.body.dataset.unlockNotified) {
+                    coursePreview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 500);
+        }
+
+        // Show unlock notification
+        function showUnlockNotification() {
+            if (document.body.dataset.unlockNotified) return;
+            document.body.dataset.unlockNotified = 'true';
+
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 30px;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: white;
+                padding: 20px 30px;
+                border-radius: 15px;
+                box-shadow: 0 10px 40px rgba(16, 185, 129, 0.5);
+                z-index: 10000;
+                font-weight: 700;
+                font-size: 1rem;
+                animation: slideInRight 0.5s ease;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            `;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 1.5rem;">🔓</span>
+                    <div>
+                        <div style="font-size: 1.1rem; margin-bottom: 3px;">Content Unlocked!</div>
+                        <div style="font-size: 0.85rem; opacity: 0.9;">Preview the course materials below</div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+
+            // Add animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(400px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Remove notification after 4 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.5s ease reverse';
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
+        }
 
         function handleLogout() {
             localStorage.removeItem('metahubCurrentUser');
             window.location.href = 'index.html';
-        }
-
-        function copyPayPalEmail() {
-            const email = 'info@metahubacademy.com';
-            const btn = document.getElementById('copyEmailBtn');
-
-            // Try to copy to clipboard
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(email).then(function () {
-                    // Update button text
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = '✓ Copied!';
-                    btn.style.background = 'rgba(16, 185, 129, 0.3)';
-                    btn.style.borderColor = '#10b981';
-                    btn.style.color = '#10b981';
-
-                    setTimeout(function () {
-                        btn.innerHTML = originalText;
-                        btn.style.background = 'rgba(6, 182, 212, 0.2)';
-                        btn.style.borderColor = '#06b6d4';
-                        btn.style.color = '#06b6d4';
-                    }, 2000);
-
-                    alert('✓ Email copied to clipboard!\n\n' + email + '\n\nYou can now paste it in PayPal.');
-                }).catch(function (err) {
-                    console.error('Clipboard error:', err);
-                    // Fallback
-                    fallbackCopyEmail(email);
-                });
-            } else {
-                // Fallback for older browsers
-                fallbackCopyEmail(email);
-            }
-        }
-
-        function fallbackCopyEmail(email) {
-            // Create temporary input
-            const tempInput = document.createElement('input');
-            tempInput.value = email;
-            tempInput.style.position = 'fixed';
-            tempInput.style.opacity = '0';
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999);
-
-            try {
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-
-                const btn = document.getElementById('copyEmailBtn');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '✓ Copied!';
-                btn.style.background = 'rgba(16, 185, 129, 0.3)';
-                btn.style.borderColor = '#10b981';
-                btn.style.color = '#10b981';
-
-                setTimeout(function () {
-                    btn.innerHTML = originalText;
-                    btn.style.background = 'rgba(6, 182, 212, 0.2)';
-                    btn.style.borderColor = '#06b6d4';
-                    btn.style.color = '#06b6d4';
-                }, 2000);
-
-                alert('✓ Email copied!\n\n' + email);
-            } catch (err) {
-                document.body.removeChild(tempInput);
-                // Last resort - show prompt
-                prompt('Copy this email address:', email);
-            }
-        }
-
-        function handleManualPayPalPayment() {
-            const email = document.getElementById('checkoutEmail').value || localStorage.getItem('pendingPayPalEmail');
-
-            if (!email) {
-                alert('Please enter your email address first');
-                return;
-            }
-
-            const confirmation = confirm(
-                'Please confirm:\n\n' +
-                '✓ You have sent $500.00 USD via PayPal\n' +
-                '✓ Your email: ' + email + '\n\n' +
-                'After confirmation, we will verify your payment and grant access within 24 hours.\n\n' +
-                'Click OK to confirm your payment.'
-            );
-
-            if (confirmation) {
-                // Save pending purchase
-                const currentUser = localStorage.getItem('metahubCurrentUser');
-                let userEmail = email;
-
-                if (currentUser) {
-                    const user = JSON.parse(currentUser);
-                    userEmail = user.email;
-                }
-
-                const purchases = JSON.parse(localStorage.getItem('metahubPurchases_' + userEmail) || '[]');
-                purchases.push({
-                    courseId: 'crypto-trading',
-                    purchaseDate: new Date().toISOString(),
-                    orderId: 'MANUAL-' + Date.now(),
-                    amount: 500,
-                    paymentMethod: 'paypal-manual',
-                    status: 'pending'
-                });
-                localStorage.setItem('metahubPurchases_' + userEmail, JSON.stringify(purchases));
-
-                // Clear pending email
-                localStorage.removeItem('pendingPayPalEmail');
-
-                alert(
-                    '✅ Payment confirmation received!\n\n' +
-                    'We will verify your PayPal payment within 24 hours.\n' +
-                    'You will receive an email at ' + email + ' once verified.\n\n' +
-                    'Thank you for your purchase!'
-                );
-
-                setTimeout(function () {
-                    window.location.href = 'my-library.html';
-                }, 2000);
-            }
         }
 
         function handleCheckout(event) {
@@ -1861,17 +2309,192 @@
                     alert('Please fill in all card details');
                     return false;
                 }
+
+                // Show processing message
+                const btn = event.target.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = '⏳ Processing Payment...';
+                btn.disabled = true;
+
+                // Simulate card payment processing
+                setTimeout(() => {
+                    alert('✅ Payment Successful!\n\nEmail: ' + email + '\nAmount: $500.00\n\nYour course access has been granted!\n\nRedirecting to your library...');
+
+                    // Save purchase to localStorage
+                    savePurchase(email, 'card', 500);
+
+                    // Redirect to success page
+                    setTimeout(function () {
+                        window.location.href = 'my-library.html';
+                    }, 1500);
+                }, 2000);
             }
 
-            // Simulate payment processing
-            alert('Processing payment...\n\nEmail: ' + email + '\nPayment Method: ' + paymentMethod + '\nAmount: $500.00\n\nThis is a demo. In production, this would process the actual payment.');
-
-            // Redirect to success page or library
-            setTimeout(function () {
-                window.location.href = 'index.html';
-            }, 2000);
-
             return false;
+        }
+
+        // M-Pesa Payment Function
+        async function initiateMpesaPayment() {
+            const phoneInput = document.getElementById('mpesaPhone');
+            const phoneNumber = phoneInput.value.trim();
+            
+            // Validate phone number
+            if (!phoneNumber) {
+                alert('Please enter your M-Pesa phone number');
+                phoneInput.focus();
+                return;
+            }
+            
+            // Validate Kenya phone number format
+            if (!/^254[17]\d{8}$/.test(phoneNumber)) {
+                alert('Please enter a valid Kenyan phone number (e.g., 254712345678)');
+                phoneInput.focus();
+                return;
+            }
+            
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.disabled = true;
+            button.innerHTML = '⏳ Processing...';
+            
+            try {
+                // Call M-Pesa STK Push API
+                const response = await fetch('http://localhost:3000/api/mpesa/stkpush', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        phoneNumber: phoneNumber,
+                        amount: 50000, // KES 50,000 (~$500)
+                        accountReference: 'CRYPTO_COURSE',
+                        transactionDesc: 'Crypto Trading Video Course Purchase'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('✅ STK Push sent! Please check your phone and enter your M-Pesa PIN to complete the payment.');
+                    
+                    // Save purchase info
+                    const email = localStorage.getItem('metahubCurrentUser') ? 
+                        JSON.parse(localStorage.getItem('metahubCurrentUser')).email : 
+                        'guest@example.com';
+                    
+                    savePurchase(email, 'M-Pesa', 50000);
+                    
+                    // Unlock course after successful payment
+                    setTimeout(() => {
+                        alert('🎉 Payment successful! Course unlocked!');
+                        unlockCourse();
+                    }, 3000);
+                } else {
+                    alert('❌ Payment failed: ' + (data.message || 'Please try again'));
+                }
+            } catch (error) {
+                console.error('M-Pesa payment error:', error);
+                alert('❌ Payment error. Please ensure the backend server is running and try again.');
+            } finally {
+                button.disabled = false;
+                button.innerHTML = originalText;
+            }
+        }
+
+        function savePurchase(email, paymentMethod, amount) {
+            const currentUser = localStorage.getItem('metahubCurrentUser');
+            let userEmail = email;
+
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                userEmail = user.email;
+            }
+
+            const purchases = JSON.parse(localStorage.getItem('metahubPurchases_' + userEmail) || '[]');
+            purchases.push({
+                courseId: 'crypto-trading',
+                courseName: 'Crypto Trading Video Course',
+                purchaseDate: new Date().toISOString(),
+                orderId: 'ORDER-' + Date.now(),
+                amount: amount,
+                paymentMethod: paymentMethod,
+                status: 'completed'
+            });
+            localStorage.setItem('metahubPurchases_' + userEmail, JSON.stringify(purchases));
+        }
+
+        // PayPal Integration for Course Page
+        function initializePayPalForCourse() {
+            // Load PayPal SDK
+            const script = document.createElement('script');
+            script.src = 'https://www.paypal.com/sdk/js?client-id=EHyxXrMCDAjeeNIFxhIVhg9b8I7PffoH0nPeoHWN7VJUD6Gfw1yHYrOqOiN5lbm5EKLXty5ukbsnLGIS&currency=USD';
+            script.onload = function() {
+                initializePayPalButton();
+            };
+            document.head.appendChild(script);
+        }
+
+        function initializePayPalButton() {
+            if (window.paypal) {
+                window.paypal.Buttons({
+                    style: {
+                        color: 'blue',
+                        shape: 'rect',
+                        label: 'pay',
+                        height: 50
+                    },
+                    
+                    createOrder: function(data, actions) {
+                        const email = document.getElementById('checkoutEmail').value;
+                        if (!email) {
+                            alert('Please enter your email address first');
+                            return;
+                        }
+
+                        // Unlock content when PayPal is initiated
+                        unlockContent();
+                        showUnlockNotification();
+
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: '500.00',
+                                    currency_code: 'USD'
+                                },
+                                description: 'Crypto Trading Video Course - BullBear Trading'
+                            }]
+                        });
+                    },
+                    
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            const email = document.getElementById('checkoutEmail').value;
+                            
+                            // Save purchase
+                            savePurchase(email, 'paypal', 500);
+                            
+                            // Show success message
+                            alert('✅ Payment Successful!\n\nThank you ' + details.payer.name.given_name + '!\n\nYour course access has been granted.\n\nRedirecting to your library...');
+                            
+                            // Redirect to library
+                            setTimeout(function() {
+                                window.location.href = 'my-library.html';
+                            }, 2000);
+                        });
+                    },
+                    
+                    onError: function(err) {
+                        console.error('PayPal error:', err);
+                        alert('Payment failed. Please try again or contact support.');
+                    },
+                    
+                    onCancel: function(data) {
+                        console.log('Payment cancelled:', data);
+                        alert('Payment was cancelled.');
+                    }
+                }).render('#paypal-button-container');
+            }
         }
 
         // Cursor gradient effect on feature cards
@@ -1893,6 +2516,12 @@
             });
         });
     </script>
+
+    <!-- Footer -->
+    <div style="text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid rgba(99, 102, 241, 0.15); color: rgba(255, 255, 255, 0.5); background: rgba(10, 14, 26, 0.95);">
+        <p>&copy; 2026 BullBear Trading. All rights reserved. | Master the Markets</p>
+        <p style="margin-top: 10px; font-size: 0.85rem;">Developed by <a href="https://twitter.com/starico" target="_blank" style="color: #06b6d4; text-decoration: none; font-weight: 600;">@starico</a></p>
+    </div>
 </body>
 
 </html>

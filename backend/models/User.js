@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+// Use mock database if enabled
+if (process.env.USE_MOCK_DB === 'true') {
+    const mockDb = require('../mockDatabase');
+    module.exports = mockDb.User;
+    return;
+}
+
 const userSchema = new mongoose.Schema({
     email: {
         type: String,

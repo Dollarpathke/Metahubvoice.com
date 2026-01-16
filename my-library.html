@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Library - Metahub Voice</title>
+    <title>My Library - Bull Bear Trading</title>
     <style>
         * {
             margin: 0;
@@ -50,22 +50,64 @@
             text-decoration: none;
         }
 
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
         .logo-image {
-            height: 45px;
+            height: 55px;
             width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover .logo-image {
+            filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.3));
+            transform: scale(1.02);
         }
 
         .logo-text {
-            font-size: 1.5rem;
-            font-weight: 900;
+            font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: #ffffff;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .user-info-header {
             display: flex;
             align-items: center;
             gap: 15px;
+        }
+
+        .back-button {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .user-email {
@@ -432,10 +474,13 @@
         <div class="container">
             <div class="header-content">
                 <a href="index.html" class="logo">
-                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/Yg29nKaXyGhLNJy1/metahub-academy-logo-design-AVL7EDKb09IvqJG4.png" alt="Metahub Voice Logo" class="logo-image">
-                    <span class="logo-text">METAHUB VOICE</span>
+                    <img src="images/bullbear-logo.png" alt="Bull Bear Trading Logo" class="logo-image">
+                    <span class="logo-text">BULL BEAR TRADING</span>
                 </a>
                 <div class="user-info-header" id="headerUserInfo" style="display: none;">
+                    <button onclick="history.back()" class="back-button">
+                        <span>←</span> Back
+                    </button>
                     <span class="user-email" id="headerUserEmail"></span>
                     <button onclick="handleLogout()" class="logout-btn-header">Logout</button>
                 </div>
@@ -468,6 +513,8 @@
     </main>
 
     <script>
+        const API_URL = 'http://localhost:5000/api';
+        
         const availableCourses = {
             'crypto-trading': {
                 id: 'crypto-trading',
@@ -495,46 +542,6 @@
             }
         };
 
-        // Add sample purchases for demo (remove this in production)
-        function addSamplePurchases() {
-            const sampleEmail = 'demo@metahubvoice.com';
-            const samplePurchases = [
-                {
-                    courseId: 'crypto-trading',
-                    purchaseDate: new Date().toISOString(),
-                    orderId: 'DEMO-001',
-                    amount: 500,
-                    paymentMethod: 'demo',
-                    status: 'active'
-                },
-                {
-                    courseId: 'crypto-spreadsheet',
-                    purchaseDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-                    orderId: 'DEMO-002',
-                    amount: 500,
-                    paymentMethod: 'demo',
-                    status: 'active'
-                },
-                {
-                    courseId: 'affiliate-marketing',
-                    purchaseDate: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
-                    orderId: 'DEMO-003',
-                    amount: 20,
-                    paymentMethod: 'demo',
-                    status: 'pending'
-                }
-            ];
-            
-            // Only add if no purchases exist
-            if (!localStorage.getItem('metahubPurchases_' + sampleEmail)) {
-                localStorage.setItem('metahubPurchases_' + sampleEmail, JSON.stringify(samplePurchases));
-                localStorage.setItem('metahubCurrentUser', JSON.stringify({ email: sampleEmail }));
-            }
-        }
-
-        // Call this to show demo data
-        addSamplePurchases();
-
         document.addEventListener('DOMContentLoaded', function() {
             checkAuth();
         });
@@ -546,13 +553,7 @@
                 const user = JSON.parse(currentUser);
                 showLibrary(user);
             } else {
-                // Try to get email from pending payment
-                const pendingEmail = localStorage.getItem('pendingPayPalEmail');
-                if (pendingEmail) {
-                    showLibrary({ email: pendingEmail });
-                } else {
-                    showAuthRequired();
-                }
+                showAuthRequired();
             }
         }
 
@@ -565,72 +566,91 @@
             document.getElementById('authRequired').style.display = 'none';
             document.getElementById('libraryContent').style.display = 'block';
             
-            // Update header
             document.getElementById('headerUserInfo').style.display = 'flex';
-            document.getElementById('headerUserEmail').textContent = user.email;
+            document.getElementById('headerUserEmail').textContent = user.email || user.name;
             
-            // Load user's courses
             loadUserCourses(user);
         }
 
-        function loadUserCourses(user) {
+        async function loadUserCourses(user) {
             const coursesGrid = document.getElementById('coursesGrid');
             const emptyLibrary = document.getElementById('emptyLibrary');
             
-            console.log('Loading courses for:', user.email);
-            const storageKey = 'metahubPurchases_' + user.email;
-            console.log('Storage key:', storageKey);
+            let purchases = [];
             
-            const userPurchases = JSON.parse(localStorage.getItem(storageKey) || '[]');
-            console.log('Purchases found:', userPurchases.length, userPurchases);
+            // Try to fetch from backend
+            try {
+                const token = localStorage.getItem('authToken') || user.token;
+                if (token) {
+                    const response = await fetch(API_URL + '/purchases/my-purchases', {
+                        headers: { 'Authorization': 'Bearer ' + token }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        purchases = data.data?.purchases || [];
+                    }
+                }
+            } catch (error) {
+                console.log('Backend unavailable, using localStorage');
+            }
             
-            if (userPurchases.length === 0) {
+            // Fallback to localStorage
+            if (purchases.length === 0) {
+                const localPurchases = JSON.parse(localStorage.getItem('metahubPurchases') || '[]');
+                purchases = localPurchases.filter(p => p.userEmail === user.email);
+            }
+            
+            if (purchases.length === 0) {
                 coursesGrid.innerHTML = '';
                 emptyLibrary.style.display = 'block';
-                console.log('No purchases - showing empty state');
                 return;
             }
             
             emptyLibrary.style.display = 'none';
             coursesGrid.innerHTML = '';
             
-            userPurchases.forEach(purchase => {
-                console.log('Processing purchase:', purchase);
-                const course = availableCourses[purchase.courseId];
-                if (course) {
-                    const courseCard = createCourseCard(course, purchase);
-                    coursesGrid.appendChild(courseCard);
-                    console.log('Added course card:', course.title);
-                } else {
-                    console.warn('Course not found:', purchase.courseId);
-                }
+            purchases.forEach(purchase => {
+                const courseCard = createPurchaseCard(purchase);
+                coursesGrid.appendChild(courseCard);
             });
         }
 
-        function createCourseCard(course, purchase) {
+        function createPurchaseCard(purchase) {
             const card = document.createElement('div');
             card.className = 'course-card';
             
-            const date = new Date(purchase.purchaseDate);
+            const date = new Date(purchase.createdAt || purchase.purchaseDate);
             const formattedDate = date.toLocaleDateString('en-US', { 
                 year: 'numeric', 
                 month: 'short', 
                 day: 'numeric' 
             });
             
-            const statusBadge = purchase.status === 'pending' 
-                ? '<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">⏳ Pending Verification</span>'
-                : '';
+            const title = purchase.course?.title || purchase.courseTitle || 'Course';
+            const status = purchase.status || 'pending';
+            
+            let statusBadge = '';
+            if (status === 'pending') {
+                statusBadge = '<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">⏳ Pending Approval</span>';
+            } else if (status === 'approved' || status === 'completed') {
+                statusBadge = '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">✅ Approved</span>';
+            } else if (status === 'rejected') {
+                statusBadge = '<span style="background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">❌ Rejected</span>';
+            }
+            
+            const isApproved = status === 'approved' || status === 'completed';
             
             card.innerHTML = `
-                <img src="${course.image}" alt="${course.title}" class="course-image" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400'">
+                <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400" alt="${title}" class="course-image">
                 <div class="course-content">
-                    <h3 class="course-title">${course.title}</h3>
-                    <p class="course-description">${course.description}</p>
+                    <h3 class="course-title">${title}</h3>
+                    <p class="course-description">Order ID: ${purchase.orderId || 'N/A'}</p>
+                    <p class="course-description">Amount: $${purchase.amount || 0}</p>
                     ${statusBadge}
                     <div class="course-meta">
                         <span class="purchase-date">Purchased: ${formattedDate}</span>
-                        <a href="${course.accessUrl}" class="access-btn">Access Course</a>
+                        ${isApproved ? '<a href="crypto-trading-course.html" class="access-btn">Access Course</a>' : '<span style="color:#94a3b8;font-size:0.85rem;">Awaiting approval</span>'}
                     </div>
                 </div>
             `;
@@ -640,8 +660,15 @@
 
         function handleLogout() {
             localStorage.removeItem('metahubCurrentUser');
+            localStorage.removeItem('authToken');
             window.location.href = 'index.html';
         }
     </script>
+
+    <!-- Footer -->
+    <div style="text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid rgba(99, 102, 241, 0.15); color: rgba(255, 255, 255, 0.5);">
+        <p>&copy; 2026 BullBear Trading. All rights reserved. | Master the Markets</p>
+        <p style="margin-top: 10px; font-size: 0.85rem;">Developed by <a href="https://twitter.com/starico" target="_blank" style="color: #06b6d4; text-decoration: none; font-weight: 600;">@starico</a></p>
+    </div>
 </body>
 </html>

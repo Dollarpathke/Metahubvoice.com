@@ -27,7 +27,7 @@ git add .
 ### 3. Create Initial Commit
 
 ```bash
-git commit -m "Initial commit: Metahub Voice - The Voice of Decentralized Wealth"
+git commit -m "Initial commit: Metahub Voice - Master the Markets"
 ```
 
 ### 4. Add Your GitHub Repository as Remote
@@ -141,7 +141,7 @@ After pushing, configure these on GitHub:
    - Save
 
 2. **Add Description**:
-   "Metahub Voice - The Voice of Decentralized Wealth. Crypto trading education and Web3 empowerment platform."
+   "Metahub Voice - Master the Markets. Crypto trading education and Web3 empowerment platform."
 
 3. **Add Topics**:
    - crypto

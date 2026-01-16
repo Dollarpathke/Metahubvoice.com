@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 
+// Use mock database if enabled
+if (process.env.USE_MOCK_DB === 'true') {
+    const mockDb = require('../mockDatabase');
+    module.exports = mockDb.Purchase;
+    return;
+}
+
 const purchaseSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -42,7 +49,7 @@ const purchaseSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'completed', 'failed', 'refunded'],
+        enum: ['pending', 'completed', 'approved', 'rejected', 'failed', 'refunded'],
         default: 'pending'
     },
     verifiedAt: {
@@ -51,6 +58,16 @@ const purchaseSchema = new mongoose.Schema({
     verifiedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    rejectedAt: {
+        type: Date
+    },
+    rejectedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    rejectionReason: {
+        type: String
     },
     notes: {
         type: String
